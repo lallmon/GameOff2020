@@ -7,7 +7,7 @@ on:
 
 env:
   GODOT_VERSION: 3.2.3
-  EXPORT_NAME: moonshot
+  EXECUTABLE_TITLE: moonshot
   SOURCE_DIRECTORY: src
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
         run: |
           mkdir -v -p build/windows
           cd $SOURCE_DIRECTORY
-          godot -v --export "Windows Desktop" ../build/windows/$GITHUB_REPOSITORY-$(echo ${GITHUB_SHA} | cut -c1-8).exe
+          godot -v --export "Windows Desktop" ../build/windows/$EXECUTABLE_TITLE-$(echo ${GITHUB_SHA} | cut -c1-6).exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -50,7 +50,7 @@ jobs:
         run: |
           mkdir -v -p build/linux
           cd $SOURCE_DIRECTORY
-          godot -v --export "Linux/X11" ../build/linux/$GITHUB_REPOSITORY-$(echo ${GITHUB_SHA} | cut -c1-8).x86_64
+          godot -v --export "Linux/X11" ../build/linux/$EXECUTABLE_TITLE-$(echo ${GITHUB_SHA} | cut -c1-6).x86_64
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
