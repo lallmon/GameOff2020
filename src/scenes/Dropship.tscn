@@ -27,7 +27,6 @@ func _ready():
 "
 
 [node name="Dropship" type="KinematicBody2D"]
-position = Vector2( 915.626, 400.365 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
