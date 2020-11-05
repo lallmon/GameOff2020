@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/sprites/dropship.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Dropship.gd" type="Script" id=2]
@@ -6,25 +6,6 @@
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 23.8737
 height = 75.4401
-
-[sub_resource type="GDScript" id=2]
-script/source = "extends CPUParticles2D
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-"
 
 [node name="Dropship" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -55,7 +36,6 @@ spread = 0.0
 initial_velocity = 2.0
 radial_accel = 58.49
 color = Color( 0.0352941, 0.658824, 0.823529, 0.658824 )
-script = SubResource( 2 )
 
 [node name="engine-exhaust-2" type="CPUParticles2D" parent="."]
 position = Vector2( -55.9992, 12.923 )
@@ -71,4 +51,3 @@ spread = 0.0
 initial_velocity = 2.0
 radial_accel = 58.49
 color = Color( 0.0352941, 0.658824, 0.823529, 0.658824 )
-[connection signal="ship_boosting" from="." to="." method="_on_Dropship_ship_boosting"]
