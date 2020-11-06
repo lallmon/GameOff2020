@@ -7,7 +7,8 @@
 radius = 23.8737
 height = 75.4401
 
-[node name="Dropship" type="KinematicBody2D"]
+[node name="Dropship" type="RigidBody2D"]
+gravity_scale = 0.1
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -25,6 +26,7 @@ shape = SubResource( 1 )
 [node name="engine-exhaust-1" type="CPUParticles2D" parent="."]
 position = Vector2( -56.7484, -12.361 )
 rotation = 1.65981
+scale = Vector2( 1, 1 )
 z_index = -1
 amount = 30
 lifetime = 0.5
@@ -40,6 +42,7 @@ color = Color( 0.0352941, 0.658824, 0.823529, 0.658824 )
 [node name="engine-exhaust-2" type="CPUParticles2D" parent="."]
 position = Vector2( -55.9992, 12.923 )
 rotation = 1.65981
+scale = Vector2( 1, 1 )
 z_index = -1
 amount = 30
 lifetime = 0.5

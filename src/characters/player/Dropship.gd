@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends RigidBody2D
 
 export (int) var speed = 200
 export (int) var boost = 400
@@ -24,5 +24,5 @@ func _ready():
 func _physics_process(_delta):
 	get_input()
 	rotation = get_global_mouse_position().angle_to_point(position)
-	velocity = move_and_slide(velocity)
+#	velocity = move_and_slide(velocity)
 
