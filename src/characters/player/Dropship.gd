@@ -21,7 +21,7 @@ func get_input():
 func _ready():
 	pass # Replace with function body.
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	get_input()
 	rotation = get_global_mouse_position().angle_to_point(position)
 	velocity = move_and_slide(velocity)

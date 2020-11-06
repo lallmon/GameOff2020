@@ -8,7 +8,7 @@ func _ready():
 func add_stat(stat_name, object, stat_ref, is_method):
 	stats.append([stat_name, object, stat_ref, is_method])
 
-func _process(delta):
+func _process(_delta):
 	var label_text = "Debug \n"
 	label_text += "===============\n"
 	
