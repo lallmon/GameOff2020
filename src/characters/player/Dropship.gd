@@ -24,5 +24,10 @@ func _physics_process(_delta):
 	velocity = move_and_slide(velocity)
 
 func toggle_exhaust(value: bool):
+	var exhaust = get_node("audio-exhaust")
+	if value:
+		exhaust.pitch_scale = 1.2
+	else:
+		exhaust.pitch_scale = 1
 	get_node("particle-exhaust-1").emitting = value
 	get_node("particle-exhaust-2").emitting = value

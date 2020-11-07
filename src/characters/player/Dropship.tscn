@@ -53,7 +53,7 @@ initial_velocity = 2.0
 radial_accel = 58.49
 color = Color( 0.0352941, 0.658824, 0.823529, 0.658824 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="audio-exhaust" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 autoplay = true
 bus = "Ship"
