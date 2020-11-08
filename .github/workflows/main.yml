@@ -17,6 +17,9 @@ jobs:
     container:
       image: barichello/godot-ci:3.2.3
     steps:
+      - name: LFS Setup
+        run: |
+          git lfs install
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup
@@ -40,6 +43,9 @@ jobs:
     container:
       image: barichello/godot-ci:3.2.3
     steps:
+      - name: LFS Setup
+        run: |
+          git lfs install
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup
