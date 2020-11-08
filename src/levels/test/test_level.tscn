@@ -74,10 +74,10 @@ scale_random = 0.39
 scale_curve = SubResource( 8 )
 color_ramp = SubResource( 4 )
 
-[sub_resource type="CanvasItemMaterial" id=16]
+[sub_resource type="CanvasItemMaterial" id=10]
 blend_mode = 1
 
-[sub_resource type="ParticlesMaterial" id=10]
+[sub_resource type="ParticlesMaterial" id=11]
 emission_shape = 2
 emission_box_extents = Vector3( 1000, 200, 1 )
 flag_disable_z = true
@@ -87,14 +87,14 @@ orbit_velocity_random = 0.0
 scale = 2.0
 scale_random = 1.0
 
-[sub_resource type="Gradient" id=11]
+[sub_resource type="Gradient" id=12]
 offsets = PoolRealArray( 0, 0.172093, 0.818605, 0.992593 )
 colors = PoolColorArray( 0, 0.858824, 0.92549, 0, 0, 0.858824, 0.92549, 0.501961, 0, 0.858824, 0.92549, 0.505882, 0, 0.858824, 0.92549, 0 )
 
-[sub_resource type="GradientTexture" id=12]
-gradient = SubResource( 11 )
+[sub_resource type="GradientTexture" id=13]
+gradient = SubResource( 12 )
 
-[sub_resource type="ParticlesMaterial" id=13]
+[sub_resource type="ParticlesMaterial" id=14]
 emission_shape = 2
 emission_box_extents = Vector3( 1000, 1920, 1 )
 flag_disable_z = true
@@ -105,9 +105,9 @@ orbit_velocity_random = 0.0
 scale = 0.05
 scale_random = 0.39
 scale_curve = SubResource( 8 )
-color_ramp = SubResource( 12 )
+color_ramp = SubResource( 13 )
 
-[sub_resource type="Shader" id=14]
+[sub_resource type="Shader" id=15]
 code = "shader_type canvas_item;
 
 uniform vec4 blue_tint : hint_color;
@@ -155,8 +155,8 @@ void fragment(){
 	COLOR = color;
 }"
 
-[sub_resource type="ShaderMaterial" id=15]
-shader = SubResource( 14 )
+[sub_resource type="ShaderMaterial" id=16]
+shader = SubResource( 15 )
 shader_param/blue_tint = Color( 0, 0.368627, 1, 1 )
 shader_param/sprite_scale = Vector2( 40, 80 )
 shader_param/wave_strength = 0.712
@@ -230,14 +230,14 @@ script = ExtResource( 3 )
 player = NodePath("../../test_level/Sub")
 
 [node name="Bubbles" type="Particles2D" parent="Camera2D"]
-material = SubResource( 16 )
+material = SubResource( 10 )
 position = Vector2( 17.9592, 637.558 )
 amount = 100
 lifetime = 100.0
 visibility_rect = Rect2( -1000, -2000, 1920, 9000 )
 local_coords = false
 draw_order = 1
-process_material = SubResource( 10 )
+process_material = SubResource( 11 )
 texture = ExtResource( 10 )
 
 [node name="Floaties" type="Particles2D" parent="Camera2D"]
@@ -249,11 +249,11 @@ preprocess = 124.43
 visibility_rect = Rect2( -1000, -3000, 1920, 5000 )
 local_coords = false
 draw_order = 1
-process_material = SubResource( 13 )
+process_material = SubResource( 14 )
 texture = ExtResource( 8 )
 
 [node name="ripple" type="Sprite" parent="."]
-material = SubResource( 15 )
+material = SubResource( 16 )
 position = Vector2( 935.59, 8858.76 )
 scale = Vector2( 80, 320 )
 z_index = 1

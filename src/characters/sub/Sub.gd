@@ -5,6 +5,9 @@ var max_torque = 3000
 var torque = 0
 var gravity = 10
 
+func _ready():
+	$BoostBubbles.emitting=false
+
 func _integrate_forces(state):
 	
 	var mouse_position = get_global_mouse_position()
@@ -38,3 +41,23 @@ func _integrate_forces(state):
 		$BoostBubbles.emitting = false
 	
 	applied_force += Vector2(0,gravity)
+
+	if Input.is_mouse_button_pressed(3):
+		TurnOnLights()
+
+
+func TurnOnLights():
+	if $AnimationPlayer.is_playing():
+		return
+	$AnimationPlayer.play("flicker")
+
+func TriggerLights():
+		$LeftBeamCone.enabled = !$LeftBeamCone.enabled
+		$LeftBeamGlow.enabled = !$LeftBeamGlow.enabled
+		$LeftBeamGlow2.enabled = !$LeftBeamGlow2.enabled
+		$RightBeamCone.enabled = !$RightBeamCone.enabled
+		$RightBeamGlow.enabled = !$RightBeamGlow.enabled
+		$RightBeamGlow2.enabled = !$RightBeamGlow2.enabled
+		$BackLight.enabled = !$BackLight.enabled
+		yield(get_tree().create_timer(1.0), "timeout")
+
