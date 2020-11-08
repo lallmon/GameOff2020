@@ -15,7 +15,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-latest
     container:
-      image: "Dockerfile"
+      image: https://gist.githubusercontent.com/lallmon/db3171af78177d91212bc2daee58e81c/raw/2c01c939468b02452e0e994782a1dca55d4cce21/Dockerfile
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -40,7 +40,7 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-latest
     container:
-      image: "Dockerfile"
+      image: https://gist.githubusercontent.com/lallmon/db3171af78177d91212bc2daee58e81c/raw/2c01c939468b02452e0e994782a1dca55d4cce21/Dockerfile
     steps:
       - name: Checkout
         uses: actions/checkout@v2
