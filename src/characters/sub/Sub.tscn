@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://characters/sub/Sub.gd" type="Script" id=1]
 [ext_resource path="res://characters/sub/Sub_Turqouise.png" type="Texture" id=2]
@@ -9,6 +9,9 @@
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 23.8737
 height = 75.4401
+
+[sub_resource type="CanvasItemMaterial" id=9]
+blend_mode = 1
 
 [sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 0.713465, 0.897824, 0.908691, 1, 1, 1, 1, 0 )
@@ -38,6 +41,9 @@ scale = 0.35
 scale_random = 1.0
 scale_curve = SubResource( 5 )
 color_ramp = SubResource( 3 )
+
+[sub_resource type="CanvasItemMaterial" id=10]
+blend_mode = 1
 
 [sub_resource type="Animation" id=7]
 resource_name = "flicker"
@@ -180,6 +186,7 @@ energy = 0.8
 range_height = 1024.0
 
 [node name="PassiveBubbles" type="Particles2D" parent="."]
+material = SubResource( 9 )
 position = Vector2( 0, -71.7713 )
 amount = 300
 lifetime = 15.0
@@ -190,6 +197,7 @@ process_material = SubResource( 6 )
 texture = ExtResource( 3 )
 
 [node name="BoostBubbles" type="Particles2D" parent="."]
+material = SubResource( 10 )
 position = Vector2( 0, -71.7713 )
 amount = 1000
 lifetime = 15.0
