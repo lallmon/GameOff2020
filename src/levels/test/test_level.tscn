@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://levels/test/test_level.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Objects/Exit/Exit.tscn" type="PackedScene" id=4]
 [ext_resource path="res://characters/sub/Sub.tscn" type="PackedScene" id=5]
 [ext_resource path="res://FX/Shaders/gradient.shader" type="Shader" id=6]
+[ext_resource path="res://levels/start/main_drone.wav" type="AudioStream" id=7]
 [ext_resource path="res://FX/Particles/mote_32x32.png" type="Texture" id=8]
 [ext_resource path="res://FX/Lights/128x128_beam_blur.png" type="Texture" id=9]
 [ext_resource path="res://FX/Particles/bubble_32x32.png" type="Texture" id=10]
@@ -264,3 +265,8 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Exit" parent="." instance=ExtResource( 4 )]
 position = Vector2( 963.352, 19225.4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
+bus = "Ambient"
