@@ -40,7 +40,7 @@ func _integrate_forces(state):
 		applied_torque = lerp(applied_torque, 0, 0.1)
 		$BoostBubbles.emitting = false
 	
-	applied_force += Vector2(0,gravity)
+	#applied_force += Vector2(0,gravity)
 
 	if Input.is_mouse_button_pressed(3):
 		TurnOnLights()
