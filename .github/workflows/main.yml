@@ -19,8 +19,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        lfs:
-          default: true
+        with:
+          lfs: true
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
@@ -44,8 +44,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        lfs:
-          default: true
+        with:
+          lfs: true
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
