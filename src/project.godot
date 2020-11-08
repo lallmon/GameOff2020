@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="moonshot"
-run/main_scene="res://levels/start/main.tscn"
+run/main_scene="res://levels/test/test_level.tscn"
 
 [display]
 
