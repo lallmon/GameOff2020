@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 var thrust = Vector2(0, 250)
-var max_torque = 3000
+var max_torque = 1000
 var torque = 0
 var gravity = 10
 
@@ -35,10 +35,12 @@ func _integrate_forces(state):
 			applied_force = thrust.rotated(rotation)
 			$BoostBubbles.emitting = true
 			applied_torque = lerp(applied_torque, 0, 0.1)
+			$AnimatedSprite.speed_scale = 2
 	else:
 		applied_force = thrust.rotated(rotation)/4
 		applied_torque = lerp(applied_torque, 0, 0.1)
 		$BoostBubbles.emitting = false
+		$AnimatedSprite.speed_scale = 1
 	
 	#applied_force += Vector2(0,gravity)
 

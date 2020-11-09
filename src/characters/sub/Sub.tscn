@@ -1,31 +1,69 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://characters/sub/Sub.gd" type="Script" id=1]
-[ext_resource path="res://characters/sub/Sub_Turqouise.png" type="Texture" id=2]
+[ext_resource path="res://characters/sub/sprite/0003.png" type="Texture" id=2]
 [ext_resource path="res://FX/Particles/bubble_32x32.png" type="Texture" id=3]
 [ext_resource path="res://FX/Lights/128x128_beam_blur.png" type="Texture" id=4]
 [ext_resource path="res://FX/Lights/128x128.png" type="Texture" id=5]
+[ext_resource path="res://characters/sub/sprite/0006.png" type="Texture" id=6]
+[ext_resource path="res://characters/sub/sprite/0017.png" type="Texture" id=7]
+[ext_resource path="res://characters/sub/sprite/0019.png" type="Texture" id=8]
+[ext_resource path="res://characters/sub/sprite/0015.png" type="Texture" id=9]
+[ext_resource path="res://characters/sub/sprite/0020.png" type="Texture" id=10]
+[ext_resource path="res://characters/sub/sprite/0021.png" type="Texture" id=11]
+[ext_resource path="res://characters/sub/sprite/0027.png" type="Texture" id=12]
+[ext_resource path="res://characters/sub/sprite/0028.png" type="Texture" id=13]
+[ext_resource path="res://characters/sub/sprite/0029.png" type="Texture" id=14]
+[ext_resource path="res://characters/sub/sprite/0002.png" type="Texture" id=15]
+[ext_resource path="res://characters/sub/sprite/0024.png" type="Texture" id=16]
+[ext_resource path="res://characters/sub/sprite/0013.png" type="Texture" id=17]
+[ext_resource path="res://characters/sub/sprite/0030.png" type="Texture" id=18]
+[ext_resource path="res://characters/sub/sprite/0016.png" type="Texture" id=19]
+[ext_resource path="res://characters/sub/sprite/Ship_Turqouise_cropped.png" type="Texture" id=20]
+[ext_resource path="res://characters/sub/sprite/0007.png" type="Texture" id=21]
+[ext_resource path="res://characters/sub/sprite/0001.png" type="Texture" id=22]
+[ext_resource path="res://characters/sub/sprite/0004.png" type="Texture" id=23]
+[ext_resource path="res://characters/sub/sprite/0008.png" type="Texture" id=24]
+[ext_resource path="res://characters/sub/sprite/0009.png" type="Texture" id=25]
+[ext_resource path="res://characters/sub/sprite/0011.png" type="Texture" id=26]
+[ext_resource path="res://characters/sub/sprite/0012.png" type="Texture" id=27]
+[ext_resource path="res://characters/sub/sprite/0014.png" type="Texture" id=28]
+[ext_resource path="res://characters/sub/sprite/0018.png" type="Texture" id=29]
+[ext_resource path="res://characters/sub/sprite/0023.png" type="Texture" id=30]
+[ext_resource path="res://characters/sub/sprite/0026.png" type="Texture" id=31]
+[ext_resource path="res://characters/sub/sprite/0022.png" type="Texture" id=32]
+[ext_resource path="res://characters/sub/sprite/0025.png" type="Texture" id=33]
+[ext_resource path="res://characters/sub/sprite/0005.png" type="Texture" id=34]
+[ext_resource path="res://characters/sub/sprite/0010.png" type="Texture" id=35]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 23.8737
-height = 75.4401
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 22 ), ExtResource( 15 ), ExtResource( 2 ), ExtResource( 23 ), ExtResource( 34 ), ExtResource( 6 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 35 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 17 ), ExtResource( 28 ), ExtResource( 9 ), ExtResource( 19 ), ExtResource( 7 ), ExtResource( 29 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 32 ), ExtResource( 30 ), ExtResource( 16 ), ExtResource( 33 ), ExtResource( 31 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "default",
+"speed": 30.0
+} ]
 
-[sub_resource type="CanvasItemMaterial" id=9]
+[sub_resource type="CapsuleShape2D" id=12]
+radius = 6.47787
+height = 42.414
+
+[sub_resource type="CanvasItemMaterial" id=3]
 blend_mode = 1
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=4]
 colors = PoolColorArray( 0.713465, 0.897824, 0.908691, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
 
-[sub_resource type="Curve" id=4]
-_data = [ Vector2( 0, 0.275 ), 0.0, 2.55348, 0, 0, Vector2( 1, 1 ), 0.012958, 0.0, 0, 0 ]
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0.275 ), 0.0, 1.94432, 0, 0, Vector2( 1, 0.836364 ), 0.012958, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=5]
-curve = SubResource( 4 )
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=8]
 lifetime_randomness = 0.48
 emission_shape = 1
 emission_sphere_radius = 1.0
@@ -37,16 +75,15 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 linear_accel = -80.0
 linear_accel_random = 0.18
-scale = 0.35
+scale = 0.3
 scale_random = 1.0
-scale_curve = SubResource( 5 )
-color_ramp = SubResource( 3 )
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
 
-[sub_resource type="CanvasItemMaterial" id=10]
+[sub_resource type="CanvasItemMaterial" id=9]
 blend_mode = 1
 
-[sub_resource type="Animation" id=7]
-resource_name = "flicker"
+[sub_resource type="Animation" id=10]
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -74,8 +111,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "idle"
+[sub_resource type="Animation" id=11]
 
 [node name="Sub" type="RigidBody2D"]
 collision_layer = 2147483649
@@ -164,18 +200,23 @@ shadow_filter = 3
 shadow_filter_smooth = 11.0
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 10.6239, 12.4867 )
+position = Vector2( 0.953598, 36.0318 )
 scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 2 )
+texture = ExtResource( 20 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.667419, 38.043 )
-shape = SubResource( 1 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0.270197, -40.4335 )
+scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 1 )
+playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( 11.625, 12.8204 )
-scale = Vector2( 0.2, 0.2 )
-polygon = PoolVector2Array( -88.2722, -147.883, -161.688, -246.327, -158.351, -288.041, -96.615, -253.002, -73.2553, -421.525, -46.5585, -419.856, -16.5247, -209.619, 172.021, -186.26, -28.2045, -151.22 )
+build_mode = 1
+polygon = PoolVector2Array( -23.0278, 56.1426, -4.29781, -9.5611, -4.29781, -16.1017, 4.62125, -16.1017, 4.91855, -10.1557, 23.054, 55.8453, 15.3241, 84.0889, 1.64822, 95.3864, -13.2169, 85.8727 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 0.52179, -40.4447 )
+shape = SubResource( 12 )
 
 [node name="WindowGlow" type="Light2D" parent="."]
 position = Vector2( -0.800499, 65.741 )
@@ -186,27 +227,27 @@ energy = 0.8
 range_height = 1024.0
 
 [node name="PassiveBubbles" type="Particles2D" parent="."]
-material = SubResource( 9 )
+material = SubResource( 3 )
 position = Vector2( 0, -71.7713 )
-amount = 300
-lifetime = 15.0
+amount = 200
+lifetime = 10.0
 randomness = 1.0
 local_coords = false
 draw_order = 1
-process_material = SubResource( 6 )
+process_material = SubResource( 8 )
 texture = ExtResource( 3 )
 
 [node name="BoostBubbles" type="Particles2D" parent="."]
-material = SubResource( 10 )
+material = SubResource( 9 )
 position = Vector2( 0, -71.7713 )
-amount = 1000
-lifetime = 15.0
+amount = 600
+lifetime = 10.0
 randomness = 1.0
 local_coords = false
 draw_order = 1
-process_material = SubResource( 6 )
+process_material = SubResource( 8 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/flicker = SubResource( 7 )
-anims/idle = SubResource( 8 )
+anims/flicker = SubResource( 10 )
+anims/idle = SubResource( 11 )

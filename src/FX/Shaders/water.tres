@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=2]
 
-[sub_resource type="Shader" id=15]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 uniform vec4 blue_tint : hint_color;
@@ -49,7 +49,7 @@ void fragment(){
 }"
 
 [resource]
-shader = SubResource( 15 )
+shader = SubResource( 1 )
 shader_param/blue_tint = Color( 0, 0.368627, 1, 1 )
 shader_param/sprite_scale = Vector2( 40, 80 )
 shader_param/wave_strength = 0.712
