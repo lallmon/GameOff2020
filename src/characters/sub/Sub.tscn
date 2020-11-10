@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://characters/sub/Sub.gd" type="Script" id=1]
 [ext_resource path="res://characters/sub/sprite/0003.png" type="Texture" id=2]
@@ -35,6 +35,7 @@
 [ext_resource path="res://characters/sub/sprite/0025.png" type="Texture" id=33]
 [ext_resource path="res://characters/sub/sprite/0005.png" type="Texture" id=34]
 [ext_resource path="res://characters/sub/sprite/0010.png" type="Texture" id=35]
+[ext_resource path="res://characters/sub/dropship_engine.wav" type="AudioStream" id=36]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -44,7 +45,7 @@ animations = [ {
 "speed": 30.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=12]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 6.47787
 height = 42.414
 
@@ -208,6 +209,7 @@ texture = ExtResource( 20 )
 position = Vector2( 0.270197, -40.4335 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
+frame = 14
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -216,7 +218,7 @@ polygon = PoolVector2Array( -23.0278, 56.1426, -4.29781, -9.5611, -4.29781, -16.
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 0.52179, -40.4447 )
-shape = SubResource( 12 )
+shape = SubResource( 2 )
 
 [node name="WindowGlow" type="Light2D" parent="."]
 position = Vector2( -0.800499, 65.741 )
@@ -251,3 +253,8 @@ texture = ExtResource( 3 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/flicker = SubResource( 10 )
 anims/idle = SubResource( 11 )
+
+[node name="EngineNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 36 )
+autoplay = true
+bus = "Ship"

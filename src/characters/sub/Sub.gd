@@ -37,11 +37,13 @@ func _integrate_forces(state):
 			$BoostBubbles.emitting = true
 			applied_torque = lerp(applied_torque, 0, 0.1)
 			$AnimatedSprite.speed_scale = 2
+			$EngineNoise.pitch_scale = 1.2
 	else:
 		applied_force = thrust.rotated(rotation)/4
 		applied_torque = lerp(applied_torque, 0, 0.1)
 		$BoostBubbles.emitting = false
 		$AnimatedSprite.speed_scale = 1
+		$EngineNoise.pitch_scale = 1.0
 	
 	#applied_force += Vector2(0,gravity)
 

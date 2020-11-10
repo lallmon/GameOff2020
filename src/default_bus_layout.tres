@@ -11,5 +11,5 @@ bus/2/name = "Ship"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = -20.3764
+bus/2/volume_db = -25.7676
 bus/2/send = "Master"
