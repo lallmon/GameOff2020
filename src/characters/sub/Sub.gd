@@ -4,12 +4,13 @@ var thrust = Vector2(0, 250)
 var max_torque = 1000
 var torque = 0
 var gravity = 10
+signal player_depth
 
 func _ready():
 	$BoostBubbles.emitting=false
 
 func _integrate_forces(state):
-	
+	emit_signal("player_depth", global_position.y)
 	var mouse_position = get_global_mouse_position()
 	var rotation_dir = 0
 	var dot_angle = position.dot(mouse_position)

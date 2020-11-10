@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://levels/test/test_level.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://FX/Lights/128x128.png" type="Texture" id=11]
 [ext_resource path="res://FX/Lights/caustic_ray.png" type="Texture" id=12]
 [ext_resource path="res://FX/Shaders/water.tres" type="Material" id=13]
+[ext_resource path="res://ui/PlayerHUD.tscn" type="PackedScene" id=14]
+[ext_resource path="res://ui/PlayerHUD.gd" type="Script" id=15]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 6 )
@@ -201,7 +203,7 @@ texture = ExtResource( 8 )
 
 [node name="ripple" type="Sprite" parent="."]
 material = ExtResource( 13 )
-position = Vector2( 935.59, 8858.76 )
+position = Vector2( 935.59, 8844.5 )
 scale = Vector2( 80, 320 )
 z_index = 1
 texture = ExtResource( 2 )
@@ -217,3 +219,8 @@ position = Vector2( 963.352, 19225.4 )
 stream = ExtResource( 7 )
 autoplay = true
 bus = "Ambient"
+
+[node name="PlayerHUD" parent="." instance=ExtResource( 14 )]
+anchor_right = 0.184
+script = ExtResource( 15 )
+[connection signal="player_depth" from="Sub" to="PlayerHUD" method="_on_Sub_player_depth"]
