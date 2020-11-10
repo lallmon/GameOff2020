@@ -9,11 +9,10 @@ signal player_depth
 func _ready():
 	$BoostBubbles.emitting=false
 
-func _integrate_forces(state):
+func _integrate_forces(_state):
 	emit_signal("player_depth", global_position.y)
 	var mouse_position = get_global_mouse_position()
 	var rotation_dir = 0
-	var dot_angle = position.dot(mouse_position)
 
 	if Input.is_mouse_button_pressed(1) or Input.is_mouse_button_pressed(2):
 		if Input.is_mouse_button_pressed(1):

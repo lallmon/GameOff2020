@@ -22,7 +22,7 @@ func _ready():
 	$CanvasModulate.visible = true
 
 
-func _process(delta):
+func _process(_delta):
 	DepthModulate()
 
 #controls the canvas modulation to darken the light as you descend
