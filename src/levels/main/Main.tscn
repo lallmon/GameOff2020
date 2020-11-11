@@ -1,16 +1,15 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://cameras/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://FX/Shaders/water.tres" type="Material" id=2]
 [ext_resource path="res://FX/Lights/128x128_beam_blur.png" type="Texture" id=3]
 [ext_resource path="res://FX/Particles/bubble_32x32.png" type="Texture" id=4]
 [ext_resource path="res://FX/Particles/mote_32x32.png" type="Texture" id=5]
-[ext_resource path="res://ui/PlayerHUD.gd" type="Script" id=6]
 [ext_resource path="res://icon.png" type="Texture" id=7]
 [ext_resource path="res://FX/Shaders/gradient.shader" type="Shader" id=8]
 [ext_resource path="res://FX/Lights/128x128.png" type="Texture" id=9]
 [ext_resource path="res://FX/Lights/caustic_ray.png" type="Texture" id=10]
-[ext_resource path="res://ui/PlayerHUD.tscn" type="PackedScene" id=11]
+[ext_resource path="res://ui/GameHUD.tscn" type="PackedScene" id=11]
 [ext_resource path="res://levels/main/Main.gd" type="Script" id=12]
 [ext_resource path="res://characters/sub/Sub.tscn" type="PackedScene" id=13]
 [ext_resource path="res://levels/main/background_drone.wav" type="AudioStream" id=14]
@@ -110,7 +109,7 @@ scale_random = 0.39
 scale_curve = SubResource( 8 )
 color_ramp = SubResource( 13 )
 
-[node name="test_level" type="Node2D"]
+[node name="MainLevel" type="Node2D"]
 script = ExtResource( 12 )
 
 [node name="BG" type="Sprite" parent="."]
@@ -176,7 +175,7 @@ smoothing_speed = 10.0
 editor_draw_screen = false
 editor_draw_limits = true
 script = ExtResource( 1 )
-player = NodePath("../../test_level/Sub")
+player = NodePath("../Sub")
 
 [node name="Bubbles" type="Particles2D" parent="Camera2D"]
 material = SubResource( 10 )
@@ -220,9 +219,7 @@ stream = ExtResource( 14 )
 autoplay = true
 bus = "Ambient"
 
-[node name="HudOverlay" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PlayerHUD" parent="HudOverlay" instance=ExtResource( 11 )]
-anchor_right = 0.184
-script = ExtResource( 6 )
-[connection signal="player_depth" from="Sub" to="HudOverlay/PlayerHUD" method="_on_Sub_player_depth"]
+[node name="GameHUD" parent="CanvasLayer" instance=ExtResource( 11 )]
+[connection signal="player_depth" from="Sub" to="CanvasLayer/GameHUD" method="_on_Sub_player_depth"]

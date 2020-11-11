@@ -119,6 +119,11 @@ collision_layer = 2147483649
 collision_mask = 6
 script = ExtResource( 1 )
 
+[node name="EngineNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 36 )
+autoplay = true
+bus = "Ship"
+
 [node name="LeftBeamCone" type="Light2D" parent="."]
 position = Vector2( -18.6386, 81.7068 )
 rotation = 1.33169
@@ -209,7 +214,7 @@ texture = ExtResource( 20 )
 position = Vector2( 0.270197, -40.4335 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
-frame = 14
+frame = 20
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -253,8 +258,3 @@ texture = ExtResource( 3 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/flicker = SubResource( 10 )
 anims/idle = SubResource( 11 )
-
-[node name="EngineNoise" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 36 )
-autoplay = true
-bus = "Ship"

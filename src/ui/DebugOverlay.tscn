@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/DebugOverlay.gd" type="Script" id=1]
+[ext_resource path="res://ui/fonts/DebugOverlay.tres" type="DynamicFont" id=2]
+
+[node name="DebugOverlay" type="VBoxContainer"]
+alignment = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FPS" type="Label" parent="."]
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Memory" type="Label" parent="."]
+margin_top = 35.0
+margin_bottom = 66.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="MouseX" type="Label" parent="."]
+margin_top = 70.0
+margin_bottom = 101.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="MouseY" type="Label" parent="."]
+margin_top = 105.0
+margin_bottom = 136.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Resolution" type="Label" parent="."]
+margin_top = 140.0
+margin_bottom = 171.0
+custom_fonts/font = ExtResource( 2 )

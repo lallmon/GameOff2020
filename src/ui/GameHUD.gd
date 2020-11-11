@@ -3,7 +3,7 @@ extends Control
 func _ready():
 	pass
 
-func _on_Sub_player_depth(value):
+func _on_Sub_player_depth(value : float):
 	#32px = 1meter
 	if value < 0:
 		return 0

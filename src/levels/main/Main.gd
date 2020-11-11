@@ -3,24 +3,8 @@ extends Node2D
 onready var settings = {}
 
 func _ready():
-	
-#	settings.display_width = ProjectSettings.get_setting("display/window/size/width")
-#	settings.display_height = ProjectSettings.get_setting("display/window/size/height")
-	
-	#var overlay = load("res://levels/start/debug_overlay.tscn").instance()
-	
-#	overlay.add_stat("Display height", settings, "display_width", false)
-#	overlay.add_stat("Player position", $Sub, "position", false)
-#	overlay.add_stat("Player rotation", $Sub, "rotation_degrees", false)
-#	overlay.add_stat("Mouse position", self, "get_global_mouse_position", true)
-	
-	
-	#add_child(overlay)
-	
 	generate_level(100)
-	
 	$CanvasModulate.visible = true
-
 
 func _process(_delta):
 	DepthModulate()
