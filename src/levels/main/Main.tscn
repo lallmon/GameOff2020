@@ -1,4 +1,6 @@
+
 [gd_scene load_steps=29 format=2]
+
 
 [ext_resource path="res://cameras/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://FX/Shaders/water.tres" type="Material" id=2]
@@ -14,6 +16,8 @@
 [ext_resource path="res://characters/sub/Sub.tscn" type="PackedScene" id=13]
 [ext_resource path="res://levels/main/background_drone.wav" type="AudioStream" id=14]
 [ext_resource path="res://Objects/Exit/Exit.tscn" type="PackedScene" id=15]
+[ext_resource path="res://levels/main/depth_loop.wav" type="AudioStream" id=16]
+[ext_resource path="res://levels/main/BGMStream1.gd" type="Script" id=17]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 8 )
@@ -223,3 +227,10 @@ bus = "Ambient"
 
 [node name="GameHUD" parent="CanvasLayer" instance=ExtResource( 11 )]
 [connection signal="player_depth" from="Sub" to="CanvasLayer/GameHUD" method="_on_Sub_player_depth"]
+
+[node name="BGMStream1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+autoplay = true
+bus = "BGM"
+script = ExtResource( 17 )
+[connection signal="player_depth" from="Sub" to="BGMStream1" method="_on_Sub_player_depth"]
