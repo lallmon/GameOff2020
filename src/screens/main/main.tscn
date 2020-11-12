@@ -1,236 +1,24 @@
+[gd_scene load_steps=3 format=2]
 
-[gd_scene load_steps=29 format=2]
-
-
-[ext_resource path="res://cameras/Camera2D.gd" type="Script" id=1]
-[ext_resource path="res://FX/Shaders/water.tres" type="Material" id=2]
-[ext_resource path="res://FX/Lights/128x128_beam_blur.png" type="Texture" id=3]
-[ext_resource path="res://FX/Particles/bubble_32x32.png" type="Texture" id=4]
-[ext_resource path="res://FX/Particles/mote_32x32.png" type="Texture" id=5]
-[ext_resource path="res://icon.png" type="Texture" id=7]
-[ext_resource path="res://FX/Shaders/gradient.shader" type="Shader" id=8]
-[ext_resource path="res://FX/Lights/128x128.png" type="Texture" id=9]
-[ext_resource path="res://FX/Lights/caustic_ray.png" type="Texture" id=10]
 [ext_resource path="res://ui/GameHUD.tscn" type="PackedScene" id=11]
-[ext_resource path="res://levels/main/Main.gd" type="Script" id=12]
-[ext_resource path="res://characters/sub/Sub.tscn" type="PackedScene" id=13]
-[ext_resource path="res://levels/main/background_drone.wav" type="AudioStream" id=14]
-[ext_resource path="res://Objects/Exit/Exit.tscn" type="PackedScene" id=15]
-[ext_resource path="res://levels/main/depth_loop.wav" type="AudioStream" id=16]
-[ext_resource path="res://levels/main/BGMStream1.gd" type="Script" id=17]
+[ext_resource path="res://screens/main/main.gd" type="Script" id=12]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 8 )
-shader_param/color = Color( 0.439216, 0.439216, 0.439216, 1 )
-shader_param/screen_height = null
-shader_param/height = 922.197
-shader_param/position = 301.506
-shader_param/noise_amount = 0.05
-
-[sub_resource type="CanvasItemMaterial" id=2]
-blend_mode = 1
-
-[sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0, 0.209302, 0.818605, 0.992593 )
-colors = PoolColorArray( 0, 0.858824, 0.92549, 0, 0, 0.858824, 0.92549, 0.12549, 0, 0.858824, 0.92549, 0.188235, 0, 0.858824, 0.92549, 0 )
-
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
-
-[sub_resource type="ParticlesMaterial" id=5]
-emission_shape = 2
-emission_box_extents = Vector3( 1000, 1, 1 )
-flag_disable_z = true
-direction = Vector3( 0, 0, 0 )
-gravity = Vector3( 0, 0, 0 )
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 25.0
-scale_random = 0.17
-color_ramp = SubResource( 4 )
-
-[sub_resource type="ParticlesMaterial" id=6]
-emission_shape = 2
-emission_box_extents = Vector3( 1500, 1, 1 )
-flag_disable_z = true
-direction = Vector3( 0, 0, 0 )
-gravity = Vector3( 0, 0, 0 )
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 4.0
-scale_random = 0.17
-color_ramp = SubResource( 4 )
-
-[sub_resource type="Curve" id=7]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.758621, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.982759, 0 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=8]
-curve = SubResource( 7 )
-
-[sub_resource type="ParticlesMaterial" id=9]
-emission_shape = 2
-emission_box_extents = Vector3( 1000, 25, 1 )
-flag_disable_z = true
-direction = Vector3( 0, 0, 0 )
-gravity = Vector3( 0, 1, 0 )
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.03
-scale_random = 0.39
-scale_curve = SubResource( 8 )
-color_ramp = SubResource( 4 )
-
-[sub_resource type="CanvasItemMaterial" id=10]
-blend_mode = 1
-
-[sub_resource type="ParticlesMaterial" id=11]
-emission_shape = 2
-emission_box_extents = Vector3( 1000, 200, 1 )
-flag_disable_z = true
-gravity = Vector3( 0, -20, 0 )
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 2.0
-scale_random = 1.0
-
-[sub_resource type="Gradient" id=12]
-offsets = PoolRealArray( 0, 0.172093, 0.818605, 0.992593 )
-colors = PoolColorArray( 0, 0.858824, 0.92549, 0, 0, 0.858824, 0.92549, 0.501961, 0, 0.858824, 0.92549, 0.505882, 0, 0.858824, 0.92549, 0 )
-
-[sub_resource type="GradientTexture" id=13]
-gradient = SubResource( 12 )
-
-[sub_resource type="ParticlesMaterial" id=14]
-emission_shape = 2
-emission_box_extents = Vector3( 1000, 1920, 1 )
-flag_disable_z = true
-direction = Vector3( 0, 0, 0 )
-gravity = Vector3( 0, 1, 0 )
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.05
-scale_random = 0.39
-scale_curve = SubResource( 8 )
-color_ramp = SubResource( 13 )
-
-[node name="MainLevel" type="Node2D"]
+[node name="main" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 12 )
 
-[node name="BG" type="Sprite" parent="."]
-material = SubResource( 1 )
-position = Vector2( 951.089, 9593.59 )
-scale = Vector2( 30.656, 300 )
-texture = ExtResource( 7 )
+[node name="levels" type="Node2D" parent="."]
 
-[node name="Sub" parent="." instance=ExtResource( 13 )]
-position = Vector2( 958.501, -128.434 )
-can_sleep = false
-linear_damp = 1.0
-angular_damp = 1.0
+[node name="text_layer" type="CanvasLayer" parent="."]
 
-[node name="Obstacles" type="Node2D" parent="."]
-position = Vector2( 1222.3, 728.892 )
+[node name="hud_layer" type="CanvasLayer" parent="."]
 
-[node name="Caustic Light" type="Particles2D" parent="."]
-material = SubResource( 2 )
-position = Vector2( 945.104, 297.059 )
-amount = 15
-lifetime = 5.0
-preprocess = 15.0
-visibility_rect = Rect2( -1000, -3000, 1920, 5000 )
-draw_order = 1
-process_material = SubResource( 5 )
-texture = ExtResource( 3 )
+[node name="GameHUD" parent="hud_layer" instance=ExtResource( 11 )]
 
-[node name="God Rays" type="Particles2D" parent="."]
-material = SubResource( 2 )
-position = Vector2( 945.104, 716.133 )
-amount = 10
-lifetime = 5.0
-preprocess = 15.0
-visibility_rect = Rect2( -1000, -3000, 1920, 5000 )
-draw_order = 1
-process_material = SubResource( 6 )
-texture = ExtResource( 10 )
+[node name="pause_layer" type="CanvasLayer" parent="."]
 
-[node name="Particles drop" type="Particles2D" parent="."]
-material = SubResource( 2 )
-position = Vector2( 945.104, -176.441 )
-amount = 200
-lifetime = 50.0
-preprocess = 124.43
-visibility_rect = Rect2( -1000, -3000, 1920, 5000 )
-local_coords = false
-draw_order = 1
-process_material = SubResource( 9 )
-texture = ExtResource( 9 )
+[node name="fade_layer" type="CanvasLayer" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 945.104, 807.182 )
-z_index = 1
-current = true
-limit_left = 0
-limit_top = 0
-limit_right = 1920
-limit_bottom = 19000
-limit_smoothed = true
-smoothing_enabled = true
-smoothing_speed = 10.0
-editor_draw_screen = false
-editor_draw_limits = true
-script = ExtResource( 1 )
-player = NodePath("../Sub")
-
-[node name="Bubbles" type="Particles2D" parent="Camera2D"]
-material = SubResource( 10 )
-position = Vector2( 17.9592, 637.558 )
-amount = 100
-lifetime = 100.0
-visibility_rect = Rect2( -1000, -2000, 1920, 9000 )
-local_coords = false
-draw_order = 1
-process_material = SubResource( 11 )
-texture = ExtResource( 4 )
-
-[node name="Floaties" type="Particles2D" parent="Camera2D"]
-material = SubResource( 2 )
-position = Vector2( 0, -322.424 )
-amount = 500
-lifetime = 25.0
-preprocess = 124.43
-visibility_rect = Rect2( -1000, -3000, 1920, 5000 )
-local_coords = false
-draw_order = 1
-process_material = SubResource( 14 )
-texture = ExtResource( 5 )
-
-[node name="ripple" type="Sprite" parent="."]
-material = ExtResource( 2 )
-position = Vector2( 935.59, 8844.5 )
-scale = Vector2( 80, 320 )
-z_index = 1
-texture = ExtResource( 7 )
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color( 0, 0, 0, 1 )
-
-[node name="Exit" parent="." instance=ExtResource( 15 )]
-position = Vector2( 963.352, 19225.4 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 14 )
-autoplay = true
-bus = "Ambient"
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="GameHUD" parent="CanvasLayer" instance=ExtResource( 11 )]
-[connection signal="player_depth" from="Sub" to="CanvasLayer/GameHUD" method="_on_Sub_player_depth"]
-
-[node name="BGMStream1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 16 )
-autoplay = true
-bus = "BGM"
-script = ExtResource( 17 )
-[connection signal="player_depth" from="Sub" to="BGMStream1" method="_on_Sub_player_depth"]
+[node name="screen_timer" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="screen_timer" to="." method="_on_screen_timer_timeout"]
