@@ -13,6 +13,8 @@ func _ready():
 	$BoostBubbles.emitting = false
 	hull_integrity = 100
 	emit_signal("hull_status", hull_integrity)
+	if game.gui != null:
+		connect("player_depth", game.gui, "_on_Sub_player_depth")
 
 func _integrate_forces(_state):
 	emit_signal("depth_status", global_position.y)
