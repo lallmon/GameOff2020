@@ -1,38 +1,59 @@
 extends Node2D
 
-onready var settings = {}
+const FIRST_SCN = "res://levels/level_test/test_level.tscn"
+const MENU_SCN = ""
 
 func _ready():
-	generate_level(100)
-	$CanvasModulate.visible = true
+	load_screen(FIRST_SCN, "", false)
 
-func _process(_delta):
-	DepthModulate()
+var load_state = 0
+var cur_screen
 
-#controls the canvas modulation to darken the light as you descend
-func DepthModulate():
-	var depth = $Sub.position.y
-	var base_brightness = 0.7
-	var depth_scale = 0.00025
-	var depth_multiplier = 0.05
+func load_screen(scrn := "", transition := "", fade_out :=true, fade_in :=true):
+	if not scrn.empty():
+		load_state = 0
+		cur_screen = scrn
 	
-	#calculate the adjusted depth value
-	var depth_adjusted = base_brightness - depth * (depth_scale * depth_multiplier)
-	
-	#stop it from getting too dark
-	if depth_adjusted <= 0.15: depth_adjusted = 0.15
-	
-	#set the canvasmodulate to adjusted depth
-	$CanvasModulate.color = Color(depth_adjusted,depth_adjusted,depth_adjusted,0.8)
+	match load_state:
+		0: #fade out
+			load_state = 1
+			print ("LOADING SCREEN:", cur_screen)
+			get_tree().paused = true
+			
+			#TO DO: implement fade
+#			if fade_out == true: $fade_layer/AnimationPlayer.play("fade_out")
+			$screen_timer.set_wait_time(0.5)
+			$screen_timer.start()
+		1:
+			load_state = 2
+			#hide the hud
+			#hud_layer/GAME_HUD.hide()
+			var children = $levels.get_children()
+			if not children.empty():
+				children[0].queue_free()
+			$screen_timer.set_wait_time(0.3)
+			$screen_timer.start()
+		2:
+			load_state = 3
+			var new_level = load(cur_screen).instance()
+			$levels.add_child(new_level)
+			$screen_timer.set_wait_time(0.3)
+			$screen_timer.start()
+		3:
+			load_state = 4
+			#TO DO: implement fade
+#			if fade_in == true: $fade_layer/AnimationPlayer.play("fade_in")
+			$screen_timer.set_wait_time(0.2)
+			$screen_timer.start()
+		4:
+			load_state = 0
+			get_tree().paused=false
 
-#super shitty and hacked together obstacle generation, should definitely be trashed
-func generate_level(var density:int = 5):
-	var obstacle = load("res://Objects/Obstacle/Obstacle.tscn")
-	
-	for a in density:
-		var position = Vector2(randf() * 1920, randf() * 3080)
-		var scale = Vector2(1 + randf() * 3, 1)
-		var spawn = obstacle.instance()
-		spawn.position = position
-		spawn.scale = scale
-		$Obstacles.add_child(spawn)
+#callback to advance the load state
+func _on_screen_timer_timeout() -> void:
+		load_screen()
+
+func toggle_pause():
+	get_tree().paused = !get_tree().paused
+
+
