@@ -4,12 +4,14 @@ const FIRST_SCN = "res://levels/level_test/test_level.tscn"
 const MENU_SCN = ""
 
 func _ready():
+	game.main = self
+	game.gui = $hud_layer/GameHUD
 	load_screen(FIRST_SCN, "", false)
 
 var load_state = 0
 var cur_screen
 
-func load_screen(scrn := "", transition := "", fade_out :=true, fade_in :=true):
+func load_screen(scrn := "", transition := "", transition_out :=true, transition_in :=true):
 	if not scrn.empty():
 		load_state = 0
 		cur_screen = scrn
@@ -19,9 +21,7 @@ func load_screen(scrn := "", transition := "", fade_out :=true, fade_in :=true):
 			load_state = 1
 			print ("LOADING SCREEN:", cur_screen)
 			get_tree().paused = true
-			
-			#TO DO: implement fade
-#			if fade_out == true: $fade_layer/AnimationPlayer.play("fade_out")
+			if transition_out == true: $transition_layer/transition/AnimationPlayer.play("transition_out")
 			$screen_timer.set_wait_time(0.5)
 			$screen_timer.start()
 		1:
@@ -41,8 +41,7 @@ func load_screen(scrn := "", transition := "", fade_out :=true, fade_in :=true):
 			$screen_timer.start()
 		3:
 			load_state = 4
-			#TO DO: implement fade
-#			if fade_in == true: $fade_layer/AnimationPlayer.play("fade_in")
+			if transition_in == true: $transition_layer/transition/AnimationPlayer.play("transition_in")
 			$screen_timer.set_wait_time(0.2)
 			$screen_timer.start()
 		4:
