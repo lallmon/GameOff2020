@@ -3,6 +3,9 @@ extends Node2D
 onready var settings = {}
 
 func _ready():
+	game.player = $Sub
+	game.camera = $Camera2D
+	
 	generate_level(100)
 	$CanvasModulate.visible = true
 

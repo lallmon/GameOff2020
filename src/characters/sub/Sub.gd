@@ -7,6 +7,9 @@ var gravity = 10
 signal player_depth
 
 func _ready():
+	if game.gui != null:
+		connect("player_depth", game.gui, "_on_Sub_player_depth")
+	
 	$BoostBubbles.emitting=false
 
 func _integrate_forces(_state):
