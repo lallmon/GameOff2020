@@ -18,6 +18,10 @@ _global_script_class_icons={
 config/name="moonshot"
 run/main_scene="res://screens/main/main.tscn"
 
+[autoload]
+
+game="*res://scripts/game.gd"
+
 [display]
 
 window/size/width=1920
