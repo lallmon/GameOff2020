@@ -14,8 +14,10 @@ __meta__ = {
 }
 
 [node name="DepthGuage" type="HBoxContainer" parent="."]
-margin_left = 774.0
-margin_right = 1142.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -184.0
+margin_right = 184.0
 margin_bottom = 79.0
 size_flags_vertical = 0
 __meta__ = {
@@ -32,10 +34,11 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Depth: "
 valign = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="DepthMeasurement" type="Label" parent="DepthGuage"]
+[node name="Value" type="Label" parent="DepthGuage"]
 margin_left = 253.0
 margin_right = 295.0
 margin_bottom = 79.0
@@ -47,10 +50,11 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 valign = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="DepthMeters" type="Label" parent="DepthGuage"]
+[node name="DepthMeasurement" type="Label" parent="DepthGuage"]
 margin_left = 299.0
 margin_right = 368.0
 margin_bottom = 79.0
@@ -60,6 +64,45 @@ custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "m"
 align = 2
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HullIntegrity" type="HBoxContainer" parent="."]
+margin_left = 32.0
+margin_right = 400.0
+margin_bottom = 79.0
+size_flags_vertical = 0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HullLabel" type="Label" parent="HullIntegrity"]
+margin_right = 176.0
+margin_bottom = 79.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Hull: "
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="HullIntegrity"]
+margin_left = 186.0
+margin_right = 228.0
+margin_bottom = 79.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "0"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false

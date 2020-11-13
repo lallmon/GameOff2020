@@ -3,8 +3,13 @@ extends Control
 func _ready():
 	pass
 
-func _on_Sub_player_depth(value : float):
+func _on_Sub_depth_status(depth : float):
 	#32px = 1meter
-	if value < 0:
+	if depth < 0:
 		return 0
-	$DepthGuage/DepthMeasurement.text = ("%d" % (value / 32))
+	else:
+		depth = depth / 32
+	$DepthGuage/Value.text = ("%d" % depth)
+
+func _on_Sub_hull_status(integrity: int):
+	$HullIntegrity/Value.text = ("%d" % integrity)

@@ -214,9 +214,7 @@ texture = ExtResource( 20 )
 position = Vector2( 0.270197, -40.4335 )
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
-
-frame = 20
-
+frame = 24
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -260,3 +258,4 @@ texture = ExtResource( 3 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/flicker = SubResource( 10 )
 anims/idle = SubResource( 11 )
+[connection signal="body_entered" from="." to="." method="_on_Sub_body_entered"]

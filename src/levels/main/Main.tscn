@@ -1,6 +1,4 @@
-
-[gd_scene load_steps=29 format=2]
-
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://cameras/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://FX/Shaders/water.tres" type="Material" id=2]
@@ -124,6 +122,8 @@ texture = ExtResource( 7 )
 
 [node name="Sub" parent="." instance=ExtResource( 13 )]
 position = Vector2( 958.501, -128.434 )
+contacts_reported = 1
+contact_monitor = true
 can_sleep = false
 linear_damp = 1.0
 angular_damp = 1.0
@@ -226,11 +226,12 @@ bus = "Ambient"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameHUD" parent="CanvasLayer" instance=ExtResource( 11 )]
-[connection signal="player_depth" from="Sub" to="CanvasLayer/GameHUD" method="_on_Sub_player_depth"]
 
 [node name="BGMStream1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
 autoplay = true
 bus = "BGM"
 script = ExtResource( 17 )
-[connection signal="player_depth" from="Sub" to="BGMStream1" method="_on_Sub_player_depth"]
+[connection signal="depth_status" from="Sub" to="BGMStream1" method="_on_Sub_depth_status"]
+[connection signal="depth_status" from="Sub" to="CanvasLayer/GameHUD" method="_on_Sub_depth_status"]
+[connection signal="hull_status" from="Sub" to="CanvasLayer/GameHUD" method="_on_Sub_hull_status"]
