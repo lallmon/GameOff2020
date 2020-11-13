@@ -128,7 +128,6 @@ linear_damp = 1.0
 angular_damp = 1.0
 
 [node name="Obstacles" type="Node2D" parent="."]
-position = Vector2( 1222.3, 728.892 )
 
 [node name="Caustic Light" type="Particles2D" parent="."]
 material = SubResource( 2 )
