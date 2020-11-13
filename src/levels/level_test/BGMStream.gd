@@ -5,7 +5,6 @@ func _ready():
 		game.player.connect("depth_status", self, "_on_Sub_depth_status")
 	
 func _on_Sub_depth_status(depth):
-	if (depth / 32) > 40:
-		print ("depth achieved")
-		if playing == false: 
-			play()
+	var meters = depth / 32 #TODO: extract to reusable function
+	if (meters >= 10 && meters < 12) && playing == false:
+		play()
