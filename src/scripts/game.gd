@@ -44,11 +44,9 @@ func _input(_event):
 			OS.window_size = OS.get_screen_size()
 			window_pos = OS.window_position
 			OS.window_position = Vector2.ZERO
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			is_fullscreen = true
 		else:
 			OS.set_borderless_window(false)
 			OS.window_size = window_size
 			OS.window_position = window_pos
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			is_fullscreen = false
