@@ -6,6 +6,7 @@ code = "shader_type canvas_item;
 uniform vec4 blue_tint : hint_color;
 uniform vec2 sprite_scale;
 uniform float wave_strength : hint_range(0,1);
+uniform float noise_amount : hint_range(0,1);
 
 float rand(vec2 coord)
 {
@@ -45,7 +46,10 @@ void fragment(){
 	color = mix (color, blue_tint, 0.3);
 	color.rgb = mix(vec3(0.5),color.rgb, 1.4);
 	
-	COLOR = color;
+	vec2 seed = (vec2(TIME,TIME) * UV);
+	float noise = rand(seed);
+	
+	COLOR = color + vec4(noise*noise_amount, noise*noise_amount, noise*noise_amount,1);
 }"
 
 [resource]
@@ -53,3 +57,4 @@ shader = SubResource( 1 )
 shader_param/blue_tint = Color( 0, 0.368627, 1, 1 )
 shader_param/sprite_scale = Vector2( 40, 80 )
 shader_param/wave_strength = 0.712
+shader_param/noise_amount = 0.061
