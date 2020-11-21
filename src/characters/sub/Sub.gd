@@ -9,6 +9,7 @@ var hull_integrity: int
 var oxygen: float
 var oxygen_decay = 1.0
 var vel_modifier = Vector2(0,0)
+var input_disabled = false
 
 signal depth_status(depth)
 signal hull_status(hull_integrity)
@@ -17,6 +18,7 @@ signal sub_destroyed
 
 func _ready():
 	add_to_group("player")
+	input_disabled = false
 	$BoostBubbles.emitting = false
 	hull_integrity = 100
 	oxygen = 100
@@ -35,9 +37,8 @@ func _integrate_forces(_state):
 	var l_dist = $Left.global_position.distance_to(mouse_position)
 	var r_dist = $Right.global_position.distance_to(mouse_position)
 	
-	
 	if Input.is_mouse_button_pressed(1) or Input.is_mouse_button_pressed(2):
-		if Input.is_mouse_button_pressed(1):
+		if Input.is_mouse_button_pressed(1) and not input_disabled:
 			
 			applied_force = -idle_thrust.rotated(rotation)
 			
@@ -58,8 +59,6 @@ func _integrate_forces(_state):
 #			var target_rotation = rad2deg(position.angle_to_point(mouse_position))
 #			var angle_diff = rotation  - target_rotation
 			
-
-			
 			if l_dist<r_dist:
 				rotation_dir = 1
 			else:
@@ -72,19 +71,11 @@ func _integrate_forces(_state):
 			torque -=50
 			applied_torque = rotation_dir * torque
 			
-		if Input.is_mouse_button_pressed(2):
-			if Input.is_mouse_button_pressed(1):
-				if l_dist<r_dist:
-					set_axis_velocity(-thrust.rotated(rotation).tangent()/3)
-				else:
-					set_axis_velocity(thrust.rotated(rotation).tangent()/3)
-
-			else:
-				applied_force = thrust.rotated(rotation)
-				$AnimatedSprite.speed_scale = 2
-				$BoostBubbles.emitting = true
-				$EngineNoise.pitch_scale = 1.2
-				
+		if Input.is_mouse_button_pressed(2) and not input_disabled:
+			applied_force = thrust.rotated(rotation)
+			$AnimatedSprite.speed_scale = 2
+			$BoostBubbles.emitting = true
+			$EngineNoise.pitch_scale = 1.2
 			applied_torque = lerp(applied_torque, 0, 0.5)
 
 	else:
@@ -94,9 +85,9 @@ func _integrate_forces(_state):
 		$BoostBubbles.emitting = false
 		$EngineNoise.pitch_scale = 1.0
 
-	if Input.is_mouse_button_pressed(3):
+	if Input.is_mouse_button_pressed(3) and not input_disabled:
 		TurnOnLights()
-		
+			
 	#set_axis_velocity(linear_velocity + vel_modifier)
 	applied_force += vel_modifier
 
@@ -120,8 +111,8 @@ func DestroySub():
 		print("Sub Is Destroyed")
 	emit_signal("sub_destroyed")
 	
-	applied_force+= Vector2(0,-1000)
-	applied_torque += 1000
+	input_disabled=true
+	
 	yield(get_tree().create_timer(3),"timeout")
 	game.main.load_screen("res://levels/procedural_test/levelgen.tscn")
 	
