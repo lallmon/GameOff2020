@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Objects/Obstacle/Rock_01.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Obstacle/Obstacle.gd" type="Script" id=2]
+
+[sub_resource type="PhysicsMaterial" id=1]
+rough = true
+absorbent = true
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -158.443, 207.176, 28.8455, 175.711, 96.2693, 21.3855, 96.2693, -47.5366, 130.73, -143.428, 94.771, -240.818, 30.3438, -270.784, 4.87262, -212.35, 1.87601, -105.971, -92.5173, -14.5739, -161.439, 18.3889, -156.945, 85.8127, -189.907, 142.748 )
+
+[node name="Obstacle4" type="StaticBody2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 2147483651
+physics_material_override = SubResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 640.0 ],
+"_edit_vertical_guides_": [ 0.0, 640.0 ]
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( -288, -272 )
+antialiased = true
+texture = ExtResource( 1 )
+polygon = PoolVector2Array( 288, 160, 288, 64, 320, 0, 384, 32, 416, 128, 384, 224, 384, 288, 320, 448, 128, 480, 96, 416, 128, 352, 128, 288, 192, 256, 224, 224 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -288, -272 )
+polygon = PoolVector2Array( 192, 256, 288, 160, 288, 64, 320, 0, 384, 32, 416, 128, 384, 224, 384, 288, 320, 448, 128, 480, 96, 416, 128, 352, 128, 288 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 2 )
