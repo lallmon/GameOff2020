@@ -1,4 +1,8 @@
 extends Area2D
 
+export var scene:String = ""
+
 func _on_Exit_body_entered(_body: Node) -> void:
-	get_tree().change_scene("res://levels/main/Main.tscn")
+	if _body.is_in_group("player"):
+		if game.main!=null:
+			game.main.load_screen(scene)
