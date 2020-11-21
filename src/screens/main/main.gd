@@ -1,6 +1,6 @@
 extends Node2D
 
-const FIRST_SCN = "res://levels/level_test/test_level.tscn"
+const FIRST_SCN = "res://levels/procedural_test/levelgen.tscn"
 const MENU_SCN = ""
 
 func _ready():
@@ -26,7 +26,7 @@ func load_screen(scrn := "", transition := "", transition_out :=true, transition
 			print ("LOADING SCREEN:", cur_screen)
 			get_tree().paused = true
 			if transition_out == true: $transition_layer/transition/AnimationPlayer.play("transition_out")
-			$screen_timer.set_wait_time(0.5)
+			$screen_timer.set_wait_time(1)
 			$screen_timer.start()
 		1:
 			load_state = 2

@@ -1,0 +1,314 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://cameras/Camera2D.gd" type="Script" id=1]
+[ext_resource path="res://FX/Lights/128x128_beam_blur.png" type="Texture" id=3]
+[ext_resource path="res://FX/Particles/bubble_32x32.png" type="Texture" id=4]
+[ext_resource path="res://FX/Particles/mote_32x32.png" type="Texture" id=5]
+[ext_resource path="res://levels/level_test/BGMStream.gd" type="Script" id=6]
+[ext_resource path="res://icon.png" type="Texture" id=7]
+[ext_resource path="res://FX/Shaders/gradient.shader" type="Shader" id=8]
+[ext_resource path="res://FX/Lights/128x128.png" type="Texture" id=9]
+[ext_resource path="res://FX/Lights/caustic_ray.png" type="Texture" id=10]
+[ext_resource path="res://levels/procedural_test/levelgen.gd" type="Script" id=11]
+[ext_resource path="res://characters/sub/Sub.tscn" type="PackedScene" id=13]
+[ext_resource path="res://levels/level_test/background_drone.wav" type="AudioStream" id=14]
+[ext_resource path="res://Objects/Exit/Exit.tscn" type="PackedScene" id=15]
+[ext_resource path="res://levels/level_test/depth_loop.wav" type="AudioStream" id=16]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 8 )
+shader_param/color = Color( 0.439216, 0.439216, 0.439216, 1 )
+shader_param/screen_height = null
+shader_param/height = 922.197
+shader_param/position = 301.506
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 1000, 200, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, -20, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+scale_random = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=4]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.172093, 0.818605, 0.992593 )
+colors = PoolColorArray( 0, 0.858824, 0.92549, 0, 0, 0.858824, 0.92549, 0.501961, 0, 0.858824, 0.92549, 0.505882, 0, 0.858824, 0.92549, 0 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.758621, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.982759, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+emission_shape = 2
+emission_box_extents = Vector3( 1000, 1920, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 1, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.05
+scale_random = 0.39
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 6 )
+
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 0, 0.213058, 0.841924, 1 )
+colors = PoolColorArray( 0.576471, 0.745098, 0.913725, 0, 0.576471, 0.745098, 0.913725, 0.12549, 0.576471, 0.745098, 0.913725, 0.188235, 0.576471, 0.745098, 0.913725, 0 )
+
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+emission_shape = 2
+emission_box_extents = Vector3( 1000, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 25.0
+scale_random = 0.17
+color_ramp = SubResource( 11 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+emission_shape = 2
+emission_box_extents = Vector3( 1500, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 4.0
+scale_random = 0.17
+color_ramp = SubResource( 11 )
+hue_variation = -0.02
+hue_variation_random = 1.0
+
+[sub_resource type="ParticlesMaterial" id=14]
+emission_shape = 2
+emission_box_extents = Vector3( 1000, 25, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 1, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.03
+scale_random = 0.39
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 11 )
+
+[sub_resource type="Shader" id=15]
+code = "shader_type canvas_item;
+
+uniform vec4 blue_tint : hint_color;
+uniform vec2 sprite_scale;
+uniform float wave_strength : hint_range(0,1);
+uniform float noise_amount : hint_range(0,1);
+
+float rand(vec2 coord)
+{
+    return fract(sin(dot(coord.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
+
+float noise(vec2 coord){
+	vec2 i = floor(coord);
+	vec2 f = fract(coord);
+	
+	//4 corners of a rectangle surrounding our point
+	float a = rand(i);
+	float b = rand(i + vec2(1.0, 0.0));
+	float c = rand(i + vec2(0.0, 1.0));
+	float d = rand(i + vec2(1.0, 1.0));
+	
+	vec2 cubic = f * f * (3.0 - 2.0 * f);
+	
+	return mix(a,b,cubic.x) + (c-a) * cubic.y * (1.0 - cubic.x) + (d-b) * cubic.x * cubic.y;
+}
+
+void fragment(){
+	
+	vec2 noisecoord1 = UV  * sprite_scale * 3.0;
+	vec2 noisecoord2 = UV * sprite_scale * 3.0 + 4.0;
+	
+	vec2 motion1 = vec2(TIME * 0.3, TIME * -0.4);
+	vec2 motion2 = vec2(TIME * 0.1, TIME * 0.5);
+	
+	vec2 distort1 = vec2(noise(noisecoord1 + motion1), noise(noisecoord2 + motion1)) - vec2(0.5);
+	vec2 distort2 = vec2(noise(noisecoord1 + motion2), noise(noisecoord2 + motion2)) - vec2(0.5);
+	
+	vec2 distort_sum = (distort1 + distort2) / (2048.0*(1.0-wave_strength));
+	
+	vec4 color = textureLod(SCREEN_TEXTURE, SCREEN_UV + distort_sum, 0.0);
+	
+	color = mix (color, blue_tint, 0.3);
+	color.rgb = mix(vec3(0.5),color.rgb, 1.4);
+	
+	vec2 seed = (vec2(TIME,TIME) * UV);
+	float noise = rand(seed);
+	
+	COLOR = color + vec4(noise*noise_amount, noise*noise_amount, noise*noise_amount,1);
+}"
+
+[sub_resource type="ShaderMaterial" id=16]
+shader = SubResource( 15 )
+shader_param/blue_tint = Color( 0, 0.34375, 1, 1 )
+shader_param/sprite_scale = Vector2( 40, 80 )
+shader_param/wave_strength = 0.712
+shader_param/noise_amount = 0.061
+
+[node name="LevelGen" type="Node2D"]
+script = ExtResource( 11 )
+chunk_size = 25
+
+[node name="BG" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 951.089, 9593.59 )
+scale = Vector2( 30.656, 300 )
+texture = ExtResource( 7 )
+
+[node name="Geometry" type="Node2D" parent="."]
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Sub" parent="." instance=ExtResource( 13 )]
+position = Vector2( 958.501, 73.3811 )
+linear_damp = 1.0
+angular_damp = 1.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 966.052, 88.4829 )
+z_index = 1
+current = true
+process_mode = 0
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 19000
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 10.0
+editor_draw_screen = false
+editor_draw_limits = true
+script = ExtResource( 1 )
+player = NodePath("../Sub")
+
+[node name="Bubbles" type="Particles2D" parent="Camera2D"]
+material = SubResource( 2 )
+position = Vector2( 17.9592, 637.558 )
+amount = 100
+lifetime = 100.0
+visibility_rect = Rect2( -1000, -2000, 1920, 9000 )
+local_coords = false
+draw_order = 1
+process_material = SubResource( 3 )
+texture = ExtResource( 4 )
+
+[node name="Floaties" type="Particles2D" parent="Camera2D"]
+material = SubResource( 4 )
+position = Vector2( 0, -322.424 )
+amount = 500
+lifetime = 25.0
+preprocess = 124.43
+visibility_rect = Rect2( -1000, -3000, 1920, 5000 )
+local_coords = false
+draw_order = 1
+process_material = SubResource( 9 )
+texture = ExtResource( 5 )
+
+[node name="Caustic Light" type="Particles2D" parent="."]
+material = SubResource( 4 )
+position = Vector2( 945.104, 297.059 )
+amount = 10
+lifetime = 5.0
+preprocess = 15.0
+visibility_rect = Rect2( -1000, -3000, 1920, 5000 )
+draw_order = 1
+process_material = SubResource( 12 )
+texture = ExtResource( 3 )
+
+[node name="God Rays" type="Particles2D" parent="."]
+material = SubResource( 4 )
+position = Vector2( 945.104, 3846.71 )
+scale = Vector2( 1.3, 4.5 )
+amount = 10
+lifetime = 5.0
+preprocess = 15.0
+visibility_rect = Rect2( -1000, -3000, 1920, 5000 )
+draw_order = 1
+process_material = SubResource( 13 )
+texture = ExtResource( 10 )
+
+[node name="God Rays_Front" type="Particles2D" parent="."]
+visible = false
+material = SubResource( 4 )
+position = Vector2( 945.104, 3834.72 )
+scale = Vector2( 1.3, 4.5 )
+z_index = 2
+amount = 10
+lifetime = 5.0
+preprocess = 15.0
+visibility_rect = Rect2( -1000, -3000, 1920, 5000 )
+draw_order = 1
+process_material = SubResource( 13 )
+texture = ExtResource( 10 )
+
+[node name="Particles drop" type="Particles2D" parent="."]
+material = SubResource( 4 )
+position = Vector2( 945.104, -176.441 )
+amount = 200
+lifetime = 50.0
+preprocess = 124.43
+visibility_rect = Rect2( -1000, -3000, 1920, 5000 )
+local_coords = false
+draw_order = 1
+process_material = SubResource( 14 )
+texture = ExtResource( 9 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 945.104, 2.90259 )
+texture = ExtResource( 9 )
+texture_scale = 50.0
+energy = 0.3
+shadow_enabled = true
+shadow_gradient_length = 1.3
+shadow_filter = 3
+shadow_filter_smooth = 11.0
+
+[node name="ripple" type="Sprite" parent="."]
+material = SubResource( 16 )
+position = Vector2( 935.59, 8844.5 )
+scale = Vector2( 80, 320 )
+z_index = 1
+texture = ExtResource( 7 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+light_mask = 3
+color = Color( 0, 0, 0, 1 )
+
+[node name="Exit" parent="." instance=ExtResource( 15 )]
+position = Vector2( 999.352, 19105.4 )
+scene = "res://levels/procedural_test/levelgen.tscn"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+autoplay = true
+bus = "Ambient"
+
+[node name="BGMStream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+bus = "BGM"
+script = ExtResource( 6 )
