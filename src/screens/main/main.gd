@@ -60,6 +60,11 @@ func _on_screen_timer_timeout() -> void:
 		load_screen()
 
 func toggle_pause():
+	var bg = $pause_layer/pause_bg
 	get_tree().paused = !get_tree().paused
+	if get_tree().paused ==true:
+		bg.visible = true
+	else:
+		bg.visible = false
 
 
