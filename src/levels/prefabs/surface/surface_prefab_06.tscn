@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://levels/prefabs/prefab.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Obstacle/obstacle_01.tscn" type="PackedScene" id=2]
+
+[node name="surface_prefab_05" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 640.0, 0.0 ],
+"_edit_vertical_guides_": [ 640.0, 0.0 ]
+}
+cost = 5
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+rect = Rect2( 0, 0, 640, 640 )
+freeze_bodies = false
+
+[node name="ObjectSpawns" type="Node2D" parent="."]
+
+[node name="Position2D3" type="RayCast2D" parent="ObjectSpawns"]
+position = Vector2( 96, 64 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 32 )
+collision_mask = 2
+
+[node name="Position2D2" type="RayCast2D" parent="ObjectSpawns"]
+position = Vector2( 544, 64 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 32 )
+collision_mask = 2
+
+[node name="Position2D" type="RayCast2D" parent="ObjectSpawns"]
+position = Vector2( 320, 384 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( -32, 0 )
+collision_mask = 2
+
+[node name="Position2D4" type="RayCast2D" parent="ObjectSpawns"]
+position = Vector2( 416, 288 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( -32, 0 )
+collision_mask = 2
+
+[node name="Position2D5" type="RayCast2D" parent="ObjectSpawns"]
+position = Vector2( 416, 352 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( -32, 0 )
+collision_mask = 2
+
+[node name="Position2D6" type="RayCast2D" parent="ObjectSpawns"]
+position = Vector2( 416, 448 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 32, 0 )
+collision_mask = 2
+
+[node name="Position2D7" type="RayCast2D" parent="ObjectSpawns"]
+position = Vector2( 416, 544 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 32, 0 )
+collision_mask = 2
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Obstacle3" parent="Objects" instance=ExtResource( 2 )]
+position = Vector2( 32, 288 )
+
+[node name="Obstacle5" parent="Objects" instance=ExtResource( 2 )]
+position = Vector2( 96, 544 )
+
+[node name="Obstacle4" parent="Objects" instance=ExtResource( 2 )]
+position = Vector2( -32, 384 )
+
+[node name="Obstacle6" parent="Objects" instance=ExtResource( 2 )]
+position = Vector2( 672, 288 )
+
+[node name="Obstacle7" parent="Objects" instance=ExtResource( 2 )]
+position = Vector2( 672, 544 )
+
+[node name="Obstacle8" parent="Objects" instance=ExtResource( 2 )]
+position = Vector2( 608, 672 )

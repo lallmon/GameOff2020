@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://levels/prefabs/prefab.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Obstacle/obstacle_04.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/Obstacle/obstacle_03.tscn" type="PackedScene" id=3]
+
+[node name="surface_prefab_05" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 640.0, 0.0 ],
+"_edit_vertical_guides_": [ 640.0, 0.0 ]
+}
+cost = 5
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+rect = Rect2( 0, 0, 640, 640 )
+freeze_bodies = false
+
+[node name="ObjectSpawns" type="Node2D" parent="."]
+
+[node name="Position2D3" type="RayCast2D" parent="ObjectSpawns"]
+position = Vector2( 96, 64 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 32 )
+collision_mask = 2
+
+[node name="Position2D2" type="RayCast2D" parent="ObjectSpawns"]
+position = Vector2( 544, 64 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 32 )
+collision_mask = 2
+
+[node name="Position2D" type="RayCast2D" parent="ObjectSpawns"]
+position = Vector2( 320, 64 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 32 )
+collision_mask = 2
+
+[node name="Position2D4" type="RayCast2D" parent="ObjectSpawns"]
+position = Vector2( 416, 288 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( -32, 0 )
+collision_mask = 2
+
+[node name="Position2D5" type="RayCast2D" parent="ObjectSpawns"]
+position = Vector2( 416, 352 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( -32, 0 )
+collision_mask = 2
+
+[node name="Position2D6" type="RayCast2D" parent="ObjectSpawns"]
+position = Vector2( 416, 448 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 32, 0 )
+collision_mask = 2
+
+[node name="Position2D7" type="RayCast2D" parent="ObjectSpawns"]
+position = Vector2( 416, 544 )
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 32, 0 )
+collision_mask = 2
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Obstacle3" parent="Objects" instance=ExtResource( 2 )]
+position = Vector2( 113.226, 514.882 )
+rotation = 0.137881
+
+[node name="Obstacle5" parent="Objects" instance=ExtResource( 3 )]
+position = Vector2( 640, 480 )
+rotation = -2.31256
