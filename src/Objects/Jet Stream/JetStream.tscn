@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://FX/Particles/strip_64x64.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Jet Stream/JetStream.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 350.376, 151.1 )
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.516616, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.3024, 0.59178, 0.63, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+width = 512
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 2
+emission_box_extents = Vector3( 256, 128, 1 )
+flag_align_y = true
+flag_disable_z = true
+spread = 1.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 90.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_random = 1.0
+color_ramp = SubResource( 4 )
+
+[node name="JetStream" type="Area2D"]
+gravity = 0.0
+collision_layer = 2
+script = ExtResource( 2 )
+stream_size = Vector2( 128, 512 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, -0.5 )
+shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+material = SubResource( 2 )
+position = Vector2( -92.7582, -2.37885 )
+amount = 64
+lifetime = 2.0
+visibility_rect = Rect2( -256, -128, 1024, 256 )
+local_coords = false
+process_material = SubResource( 5 )
+texture = ExtResource( 1 )
+[connection signal="body_entered" from="." to="." method="_on_JetStream_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_JetStream_body_exited"]
