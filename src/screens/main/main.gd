@@ -48,6 +48,7 @@ func load_screen(scrn := "", transition := "", transition_out :=true, transition
 			if transition_in == true: $transition_layer/transition/AnimationPlayer.play("transition_in")
 			if game.gui!=null:
 				game.gui.subscribe_to_player()
+				$text_layer/zone_text.subscribe_to_player()
 			$screen_timer.set_wait_time(0.2)
 			$screen_timer.start()
 		4:
