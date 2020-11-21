@@ -108,6 +108,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Oxygen" type="HBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -368.0
+margin_bottom = 79.0
+size_flags_vertical = 0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="OxygenLabel" type="Label" parent="Oxygen"]
+margin_right = 279.0
+margin_bottom = 79.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Oxygen: "
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="Oxygen"]
+margin_left = 283.0
+margin_right = 325.0
+margin_bottom = 79.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "0"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="DebugOverlay" parent="." instance=ExtResource( 3 )]
 anchor_top = 1.0
 anchor_bottom = 1.0
