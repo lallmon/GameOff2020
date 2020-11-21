@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://levels/prefabs/prefab.gd" type="Script" id=1]
-[ext_resource path="res://Objects/Obstacle/Obstacle6.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/Obstacle/obstacle_04.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/Obstacle/obstacle_03.tscn" type="PackedScene" id=3]
 
 [node name="surface_prefab_04" type="Node2D"]
