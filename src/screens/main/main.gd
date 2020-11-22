@@ -14,6 +14,8 @@ var cur_screen
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause_btn"):
 		toggle_pause()
+	if event.is_action_pressed("reset_btn"):
+		load_screen(FIRST_SCN)
 
 func load_screen(scrn := "", transition := "", transition_out :=true, transition_in :=true):
 	if not scrn.empty():
