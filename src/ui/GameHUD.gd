@@ -14,7 +14,7 @@ func subscribe_to_player():
 	game.player.connect("oxygen_status", self, "_on_Sub_oxygen_status")
 	game.player.connect("sub_destroyed", self, "_on_Sub_destroyed")
 	#TO DO: Temporary fix
-	game.player.emit_signal("hull_status", game.player.hull_integrity)
+	game.player.emit_signal("hull_status", game.player.hull_integrity, false)
 	
 func _on_Sub_depth_status(depth : float):
 	#32px = 1meter
@@ -24,8 +24,10 @@ func _on_Sub_depth_status(depth : float):
 		depth = depth / 32
 	$DepthGuage/Value.text = ("%d" % depth)
 
-func _on_Sub_hull_status(integrity: int):
+func _on_Sub_hull_status(integrity: int, took_damage:bool):
 	$HullIntegrity/Value.text = ("%d" % integrity)
+	if not $AnimationPlayer.is_playing() and took_damage==true:
+		$AnimationPlayer.play("take_damage")
 
 func _on_Sub_oxygen_status(oxygen:float):
 	print ("oxygen_status")

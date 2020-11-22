@@ -121,7 +121,7 @@ func TakeHullDamage(damage_amount):
 	if hull_integrity <= 0:
 		hull_integrity = 0
 		DestroySub()
-	emit_signal("hull_status", hull_integrity)
+	emit_signal("hull_status", hull_integrity, true)
 
 func _on_Sub_body_entered(body):
 	var velocity_force = linear_velocity.length()
