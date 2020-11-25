@@ -1,8 +1,8 @@
 extends StaticBody2D
-export var damage : int = 10
+export var damage : int = 5
 
 func _ready():
-	pass
+	add_to_group("obstacle")
 #	respawn()
 
 func respawn():
