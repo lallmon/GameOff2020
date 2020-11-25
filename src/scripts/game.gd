@@ -33,20 +33,6 @@ func _ready():
 
 
 #OS Input code for fullscreening
-var is_fullscreen := false
-var window_size : Vector2
-var window_pos : Vector2
 func _input(_event):
 	if Input.is_action_just_pressed( "btn_fullscreen" ):
-		if not is_fullscreen:
-			OS.set_borderless_window(true)
-			window_size = OS.window_size
-			OS.window_size = OS.get_screen_size()
-			window_pos = OS.window_position
-			OS.window_position = Vector2.ZERO
-			is_fullscreen = true
-		else:
-			OS.set_borderless_window(false)
-			OS.window_size = window_size
-			OS.window_position = window_pos
-			is_fullscreen = false
+		OS.window_fullscreen = not OS.window_fullscreen
