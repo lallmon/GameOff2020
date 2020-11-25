@@ -1,15 +1,12 @@
 extends Area2D
 
-export var oxygen_value: int
+export var oxygen_value: int = 15
 
-func _ready():
-	oxygen_value = 15
-	
 func _on_oxygen_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
 		print ("oxygen collected by:", body.name)
 		$AudioStreamPlayer.play()
-		body.oxygen += oxygen_value
+		body.oxygen_level += oxygen_value
 		yield($AudioStreamPlayer, "finished")
 		collected()
 
