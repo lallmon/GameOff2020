@@ -5,6 +5,6 @@ func _ready():
 		game.player.connect("depth_status", self, "_on_Sub_depth_status")
 	
 func _on_Sub_depth_status(depth):
-	var meters = depth / 32 #TODO: extract to reusable function
+	var meters = Utilities.pixels_to_meters(depth)
 	if (meters >= 10 && meters < 12) && playing == false:
 		play()

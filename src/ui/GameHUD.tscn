@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ui/fonts/DepthGuage.tres" type="DynamicFont" id=1]
 [ext_resource path="res://ui/GameHUD.gd" type="Script" id=2]
 [ext_resource path="res://ui/DebugOverlay.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/Meter/Meter.tscn" type="PackedScene" id=4]
 
 [node name="GameHUD" type="Control"]
 anchor_right = 1.0
@@ -17,6 +18,7 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -184.0
+margin_top = 64.0
 margin_right = 184.0
 margin_bottom = 79.0
 size_flags_vertical = 0
@@ -24,7 +26,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DepthLabel" type="Label" parent="DepthGuage"]
+[node name="Title" type="Label" parent="DepthGuage"]
 margin_right = 249.0
 margin_bottom = 79.0
 size_flags_horizontal = 2
@@ -70,78 +72,80 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HullIntegrity" type="HBoxContainer" parent="."]
+[node name="Hull" type="VBoxContainer" parent="."]
 margin_left = 32.0
-margin_right = 400.0
-margin_bottom = 79.0
+margin_top = 32.0
+margin_right = 352.0
+margin_bottom = 179.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_vertical = 0
+alignment = 1
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="HullLabel" type="Label" parent="HullIntegrity"]
-margin_right = 176.0
-margin_bottom = 79.0
-size_flags_horizontal = 2
+[node name="Meter" parent="Hull" instance=ExtResource( 4 )]
+
+[node name="Title" type="Label" parent="Hull"]
+margin_top = 68.0
+margin_right = 320.0
+margin_bottom = 147.0
 size_flags_vertical = 2
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Hull: "
+text = "Hull"
+align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="HullIntegrity"]
-margin_left = 186.0
-margin_right = 228.0
-margin_bottom = 79.0
-grow_horizontal = 2
-size_flags_horizontal = 2
-size_flags_vertical = 2
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "0"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Oxygen" type="HBoxContainer" parent="."]
+[node name="Oxygen" type="VBoxContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -368.0
-margin_bottom = 79.0
+margin_left = -352.0
+margin_top = 32.0
+margin_right = -32.0
+margin_bottom = 179.0
 size_flags_vertical = 0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="OxygenLabel" type="Label" parent="Oxygen"]
-margin_right = 279.0
-margin_bottom = 79.0
-size_flags_horizontal = 2
+[node name="Meter" parent="Oxygen" instance=ExtResource( 4 )]
+
+[node name="Title" type="Label" parent="Oxygen"]
+margin_top = 68.0
+margin_right = 320.0
+margin_bottom = 147.0
 size_flags_vertical = 2
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Oxygen: "
+text = "Oxygen"
+align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="Oxygen"]
-margin_left = 283.0
-margin_right = 325.0
-margin_bottom = 79.0
+[node name="Zone" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -960.0
+margin_top = -39.0
+margin_right = 960.0
+margin_bottom = 40.0
 grow_horizontal = 2
 size_flags_horizontal = 2
 size_flags_vertical = 2
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "0"
+align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false

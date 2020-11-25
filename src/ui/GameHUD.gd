@@ -1,36 +1,27 @@
 extends Control
 
-func _ready():
-	pass
-
-func subscribe_to_player():
-	if game.player == null:
-		if game.debug:
-			print ("subscribe_to_player(): Player not found!")
-		return
-		
-	game.player.connect("depth_status", self, "_on_Sub_depth_status")
-	game.player.connect("hull_status", self, "_on_Sub_hull_status")
-	game.player.connect("oxygen_status", self, "_on_Sub_oxygen_status")
-	game.player.connect("sub_destroyed", self, "_on_Sub_destroyed")
-	#TO DO: Temporary fix
-	game.player.emit_signal("hull_status", game.player.hull_integrity)
-	
 func _on_Sub_depth_status(depth : float):
-	#32px = 1meter
-	if depth < 0:
-		return 0
-	else:
-		depth = depth / 32
+	depth = Utilities.pixels_to_meters(depth)
+	
 	$DepthGuage/Value.text = ("%d" % depth)
+	if depth > 0 and depth < 30:
+		$Zone.text = "Sunlight Zone"
+	elif depth > 200 and depth < 230:
+		$Zone.text = "Twilight Zone"
+	elif depth > 1000 and depth < 1030:
+		$Zone.text = "Midnight Zone"
+	elif depth > 3000 and depth < 4030:
+		$Zone.text = "The Abyss"
+	elif depth > 6000 and depth < 6030:
+		$Zone.text = "Basin"
+	elif depth > 7000 and depth < 7030:
+		$Zone.text = "The Trenches"
+	else:
+		$Zone.text = ""
 
 func _on_Sub_hull_status(integrity: int):
-	$HullIntegrity/Value.text = ("%d" % integrity)
+	$Hull/Meter/Progress.value = integrity
 
 func _on_Sub_oxygen_status(oxygen:float):
-	print ("oxygen_status")
-	$Oxygen/Value.text = ("%d" % oxygen)
+	$Oxygen/Meter/Progress.value = oxygen
 
-func _on_Sub_destroyed():
-	pass
-	#self.visible = false

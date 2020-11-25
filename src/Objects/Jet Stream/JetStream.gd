@@ -4,7 +4,6 @@ export var stream_size = Vector2(8,4)
 export var strength:= 200
 
 onready var collision = $CollisionShape2D
-onready var sprite = $Sprite
 onready var particles = $Particles2D
 
 onready var particle_material = particles.get_process_material()

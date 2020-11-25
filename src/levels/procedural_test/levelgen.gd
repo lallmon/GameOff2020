@@ -62,7 +62,6 @@ func generate(var difficulty_ramp, var difficulty_start):
 
 func generate_items(frequency:int):
 	
-	var budget
 	var freq_modifier=0
 	
 	for a in chunks:
