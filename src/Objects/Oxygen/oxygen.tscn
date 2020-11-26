@@ -73,11 +73,11 @@ bus = "Ship"
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 4 )
-color = Color( 2, 0.65625, 0, 1 )
+color = Color( 0, 0.654902, 1, 1 )
 energy = 0.5
 
 [node name="Sprite2" type="Sprite" parent="Light2D"]
-modulate = Color( 2, 0.654902, 0, 0.12549 )
+modulate = Color( 0, 0.654902, 1, 0.12549 )
 position = Vector2( 0, -1.05946 )
 texture = ExtResource( 4 )
 [connection signal="body_entered" from="." to="." method="_on_oxygen_body_entered"]
