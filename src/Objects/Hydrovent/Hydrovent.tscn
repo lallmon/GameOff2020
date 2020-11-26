@@ -113,10 +113,12 @@ shape = SubResource( 8 )
 anims/cycle = SubResource( 9 )
 
 [node name="Light2D" type="Light2D" parent="."]
+light_mask = 3
 position = Vector2( 0, -17.6777 )
 texture = ExtResource( 4 )
 color = Color( 0, 1, 0.0166667, 1 )
 energy = 0.5
+range_height = 1024.0
 
 [node name="Sprite2" type="Sprite" parent="Light2D"]
 modulate = Color( 2, 0.3, 0, 0.13 )
