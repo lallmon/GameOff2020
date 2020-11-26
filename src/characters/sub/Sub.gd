@@ -14,6 +14,7 @@ var input_disabled = false
 signal depth_status(depth)
 signal hull_status(hull_integrity)
 signal oxygen_status(oxygen)
+signal heavy_damage(damage)
 signal sub_destroyed
 
 func _ready():
@@ -114,7 +115,11 @@ func DestroySub():
 	input_disabled=true
 
 func TakeHullDamage(damage_amount):
-	hull_integrity = hull_integrity - damage_amount
+	var new_integrity = hull_integrity - damage_amount
+	var difference = hull_integrity - new_integrity
+	hull_integrity = new_integrity
+	if difference >= 5:
+		emit_signal("heavy_damage", difference)
 	if hull_integrity <= 0:
 		hull_integrity = 0
 		DestroySub()

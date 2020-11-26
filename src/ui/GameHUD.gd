@@ -21,6 +21,12 @@ func _on_Sub_depth_status(depth : float):
 
 func _on_Sub_hull_status(integrity: int):
 	$Hull/Meter/Progress.value = integrity
+	
+
+func _on_heavy_damage(damage: int):
+	#TO DO: dynamically change the effect based on how much damage has been taken
+	if not $AnimationPlayer.is_playing():
+		$AnimationPlayer.play("take_damage")
 
 func _on_Sub_oxygen_status(oxygen:float):
 	$Oxygen/Meter/Progress.value = oxygen
