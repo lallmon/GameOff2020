@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://cameras/Camera2D.gd" type="Script" id=1]
+[ext_resource path="res://Objects/SpawnSplash/SpawnSplash.tscn" type="PackedScene" id=2]
 [ext_resource path="res://FX/Lights/128x128_beam_blur.png" type="Texture" id=3]
 [ext_resource path="res://FX/Particles/bubble_32x32.png" type="Texture" id=4]
 [ext_resource path="res://FX/Particles/mote_32x32.png" type="Texture" id=5]
@@ -184,9 +185,12 @@ texture = ExtResource( 7 )
 [node name="Items" type="Node2D" parent="."]
 
 [node name="Sub" parent="." instance=ExtResource( 13 )]
-position = Vector2( 958.501, 73.3811 )
+position = Vector2( 958.501, -269.318 )
 linear_damp = 1.0
 angular_damp = 1.0
+
+[node name="SpawnSplash" parent="." instance=ExtResource( 2 )]
+position = Vector2( 959.822, -19.7758 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 966.052, 88.4829 )
