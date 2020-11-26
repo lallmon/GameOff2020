@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Objects/Hydrovent/vent.png" type="Texture" id=1]
 [ext_resource path="res://FX/Particles/cloudlet_128x128.png" type="Texture" id=2]
@@ -76,6 +76,9 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
+[sub_resource type="OccluderPolygon2D" id=10]
+polygon = PoolVector2Array( -36.8828, 39.8002, -36.3525, 28.1329, -27.1601, 14.1675, -22.9175, 1.96996, -22.3871, -33.3854, -18.6749, -61.316, -14.9626, -61.6696, -9.48248, -69.4477, 15.2663, -69.271, 18.8018, -54.4217, 21.9838, -25.2536, 24.9889, -7.92946, 26.9335, 9.92498, 36.4794, 28.4865, 36.833, 39.0931, 24.105, 47.5784, -26.4531, 47.932 )
+
 [node name="Hydrovent" type="StaticBody2D"]
 script = ExtResource( 3 )
 
@@ -119,5 +122,8 @@ energy = 0.5
 modulate = Color( 2, 0.3, 0, 0.13 )
 position = Vector2( 0, -1.05946 )
 texture = ExtResource( 4 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 10 )
 [connection signal="body_entered" from="InfluenceArea" to="." method="_on_InfluenceArea_body_entered"]
 [connection signal="body_exited" from="InfluenceArea" to="." method="_on_InfluenceArea_body_exited"]
