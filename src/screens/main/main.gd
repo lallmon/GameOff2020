@@ -19,6 +19,8 @@ func subscribe_to_player():
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause_btn"):
 		toggle_pause()
+	if event.is_action_pressed("reset_btn"):
+		load_screen(FIRST_SCN)
 
 
 
