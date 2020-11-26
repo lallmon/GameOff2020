@@ -133,7 +133,6 @@ script = ExtResource( 1 )
 
 [node name="EngineNoise" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 36 )
-autoplay = true
 bus = "Ship"
 
 [node name="LeftBeamCone" type="Light2D" parent="."]
@@ -235,8 +234,7 @@ position = Vector2( 0.530609, 0.337891 )
 rotation = -6.27718
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 2 )
-frame = 27
-playing = true
+frame = 4
 offset = Vector2( -1.30203, -2.33063 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -297,6 +295,10 @@ position = Vector2( 32, 120 )
 [node name="OxygenTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="InputActivation" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [node name="Target" type="Position2D" parent="."]
 position = Vector2( 0, 70.3811 )
 
@@ -308,3 +310,4 @@ scale = Vector2( 0.3, 0.1 )
 z_index = 3
 texture = ExtResource( 5 )
 [connection signal="body_entered" from="." to="." method="_on_Sub_body_entered"]
+[connection signal="timeout" from="InputActivation" to="." method="_on_InputActivation_timeout"]

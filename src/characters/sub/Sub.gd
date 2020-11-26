@@ -18,10 +18,15 @@ signal sub_destroyed
 
 func _ready():
 	add_to_group("player")
-	input_disabled = false
+	input_disabled = true
 	$BoostBubbles.emitting = false
 	$OxygenTimer.connect("timeout", self, "_on_Oxygen_timeout")
 	$OxygenTimer.start()
+	spawn_state()
+
+func spawn_state():
+	set_axis_velocity(Vector2(0,700))
+	$InputActivation.start()
 
 func _integrate_forces(_state):
 	emit_signal("depth_status", global_position.y)
@@ -130,3 +135,8 @@ func _on_Oxygen_timeout():
 		oxygen = 0
 		DestroySub()
 	emit_signal("oxygen_status", oxygen)
+
+func _on_InputActivation_timeout() -> void:
+	$EngineNoise.play()
+	$AnimatedSprite.playing=true
+	input_disabled = false
