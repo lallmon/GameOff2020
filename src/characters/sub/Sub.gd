@@ -5,8 +5,10 @@ var idle_thrust : Vector2 = Vector2(0, 35)
 var max_torque : int = 6000
 var torque : int = 0
 var gravity : int = 10
-var hull_integrity: int
-var oxygen: float
+
+var hull_integrity: int = 100
+var oxygen: float = 100
+
 var oxygen_decay = 1.0
 var vel_modifier = Vector2(0,0)
 var input_disabled = false
@@ -18,6 +20,7 @@ signal sub_destroyed
 
 func _ready():
 	add_to_group("player")
+
 	input_disabled = true
 	$BoostBubbles.emitting = false
 	hull_integrity = 100
@@ -30,9 +33,9 @@ func spawnState():
 	set_axis_velocity(Vector2(0,700))
 	$InputActivation.start()
 
-
 func _integrate_forces(_state):
 	emit_signal("depth_status", global_position.y)
+	emit_signal("hull_status", hull_integrity)
 	var mouse_position = get_global_mouse_position()
 	var mouse_vector = mouse_position - position
 	var rotation_dir = 0
@@ -112,21 +115,15 @@ func TriggerLights():
 	yield(get_tree().create_timer(1.0), "timeout")
 
 func DestroySub():
-	if game.debug:
-		print("Sub Is Destroyed")
 	emit_signal("sub_destroyed")
-	
 	input_disabled=true
-	
-	yield(get_tree().create_timer(3),"timeout")
-	game.main.load_screen("res://levels/procedural_test/levelgen.tscn")
-	
+
 func TakeHullDamage(damage_amount):
 	hull_integrity = hull_integrity - damage_amount
 	if hull_integrity <= 0:
 		hull_integrity = 0
 		DestroySub()
-	emit_signal("hull_status", hull_integrity, true)
+	emit_signal("hull_status", hull_integrity)
 
 func _on_Sub_body_entered(body):
 	var velocity_force = linear_velocity.length()
@@ -144,8 +141,8 @@ func _on_Oxygen_timeout():
 		DestroySub()
 	emit_signal("oxygen_status", oxygen)
 
-
 func _on_InputActivation_timeout() -> void:
 	$EngineNoise.play()
 	$AnimatedSprite.playing=true
 	input_disabled = false
+

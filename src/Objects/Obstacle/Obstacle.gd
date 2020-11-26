@@ -3,6 +3,7 @@ export var damage : int = 5
 
 func _ready():
 	add_to_group("obstacle")
+
 #	respawn()
 
 func respawn():

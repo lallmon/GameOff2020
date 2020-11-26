@@ -62,11 +62,9 @@ func generate(var difficulty_ramp, var difficulty_start):
 
 func generate_items(frequency:int):
 	
-	var _budget
 	var freq_modifier=0
 	
 	for a in chunks:
-
 		if a==null:
 			continue
 		#generate a number between 1-100	
@@ -74,6 +72,7 @@ func generate_items(frequency:int):
 		if rand<=frequency:
 			freq_modifier = 0
 			var item = pick_item(randi()%3)
+
 			a.AddItem(item)
 		else:
 			freq_modifier +=1

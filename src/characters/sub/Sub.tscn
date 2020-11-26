@@ -234,7 +234,9 @@ position = Vector2( 0.530609, 0.337891 )
 rotation = -6.27718
 scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 2 )
+
 frame = 4
+
 offset = Vector2( -1.30203, -2.33063 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -294,6 +296,7 @@ position = Vector2( 32, 120 )
 
 [node name="OxygenTimer" type="Timer" parent="."]
 autostart = true
+
 
 [node name="InputActivation" type="Timer" parent="."]
 wait_time = 2.0

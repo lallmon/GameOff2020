@@ -6,8 +6,8 @@ on:
     branches: [main]
 
 env:
-  GODOT_VERSION: 3.2.3
   EXECUTABLE_TITLE: moonshot
+  GODOT_VERSION: 3.2.3
   SOURCE_DIRECTORY: src
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-latest
     container:
-      image: lalmon/godot-ci-lfs:latest
+      image: barichello/godot-ci:3.2.3
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -36,11 +36,36 @@ jobs:
           name: windows
           path: build/windows
 
+  export-mac:
+    name: MacOS Export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:3.2.3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: MacOS Build
+        run: |
+          mkdir -v -p build/mac
+          cd $SOURCE_DIRECTORY
+          godot -v --export "Mac OSX" ../build/mac/$EXECUTABLE_TITLE-$(echo ${GITHUB_SHA} | cut -c1-6).zip
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: mac
+          path: build/mac
+
   export-linux:
     name: Linux Export
     runs-on: ubuntu-latest
     container:
-      image: lalmon/godot-ci-lfs:latest
+      image: barichello/godot-ci:3.2.3
     steps:
       - name: Checkout
         uses: actions/checkout@v2
