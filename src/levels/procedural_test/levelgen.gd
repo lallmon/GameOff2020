@@ -72,7 +72,7 @@ func generate_items(frequency:int):
 		var rand = (randi()%100) - freq_modifier
 		if rand<=frequency:
 			freq_modifier = 0
-			var item = pick_item(randi()%2)
+			var item = pick_item(randi()%3)
 			a.AddItem(item)
 		else:
 			freq_modifier +=1
@@ -91,7 +91,7 @@ func pick_item(index:int):
 		1:
 			item = load("res://Objects/Jet Stream/JetStream.tscn")
 		2:
-			item = load("res://Objects/Oxygen/oxygen.tscn")
+			item = load("res://Objects/Hydrovent/Hydrovent.tscn")
 		3:
 			item = load("res://Objects/Oxygen/oxygen.tscn")
 		4:
