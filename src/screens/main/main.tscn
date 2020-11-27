@@ -8,14 +8,14 @@
 [ext_resource path="res://ui/GameHUD.tscn" type="PackedScene" id=11]
 [ext_resource path="res://screens/main/main.gd" type="Script" id=12]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 56
 font_data = ExtResource( 4 )
 
-[sub_resource type="CanvasItemMaterial" id=3]
+[sub_resource type="CanvasItemMaterial" id=2]
 blend_mode = 1
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticlesMaterial" id=3]
 emission_shape = 2
 emission_box_extents = Vector3( 1000, 200, 1 )
 flag_disable_z = true
@@ -25,7 +25,7 @@ orbit_velocity_random = 0.0
 scale = 2.0
 scale_random = 1.0
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=4]
 emission_shape = 2
 emission_box_extents = Vector3( 1000, 200, 1 )
 flag_disable_z = true
@@ -35,7 +35,7 @@ orbit_velocity_random = 0.0
 scale = 10.0
 scale_random = 1.0
 
-[sub_resource type="Shader" id=6]
+[sub_resource type="Shader" id=5]
 code = "shader_type canvas_item;
 
 uniform vec4 blue_tint : hint_color;
@@ -87,14 +87,14 @@ void fragment(){
 	COLOR = color + vec4(noise*noise_amount, noise*noise_amount, noise*noise_amount,1);
 }"
 
-[sub_resource type="ShaderMaterial" id=7]
-shader = SubResource( 6 )
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
 shader_param/blue_tint = Color( 0.376471, 0.478431, 0.67451, 1 )
 shader_param/sprite_scale = Vector2( 16, 16 )
 shader_param/wave_strength = 0.881
 shader_param/noise_amount = 0.055
 
-[sub_resource type="Shader" id=8]
+[sub_resource type="Shader" id=7]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -112,14 +112,14 @@ void fragment()
 }
 "
 
-[sub_resource type="ShaderMaterial" id=9]
-shader = SubResource( 8 )
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
 shader_param/cutoff = 0.0
 shader_param/smooth_size = 0.302
 shader_param/color = null
 shader_param/mask = ExtResource( 1 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=9]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/cutoff")
 tracks/0/interp = 1
@@ -133,7 +133,7 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/cutoff")
 tracks/0/interp = 1
@@ -147,7 +147,7 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=11]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/cutoff")
 tracks/0/interp = 1
@@ -192,7 +192,7 @@ margin_left = -102.0
 margin_top = -36.0
 margin_right = 128.0
 margin_bottom = 36.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "PAUSED"
 align = 1
 __meta__ = {
@@ -200,9 +200,20 @@ __meta__ = {
 }
 
 [node name="Bubbles" type="Particles2D" parent="pause_layer/pause_bg"]
-material = SubResource( 3 )
+material = SubResource( 2 )
 position = Vector2( 998.02, 1560.73 )
 amount = 50
+lifetime = 100.0
+visibility_rect = Rect2( -1000, -2000, 1920, 9000 )
+local_coords = false
+draw_order = 1
+process_material = SubResource( 3 )
+texture = ExtResource( 5 )
+
+[node name="Bubbles2" type="Particles2D" parent="pause_layer/pause_bg"]
+material = SubResource( 2 )
+position = Vector2( 1082.85, 1544.7 )
+amount = 15
 lifetime = 100.0
 visibility_rect = Rect2( -1000, -2000, 1920, 9000 )
 local_coords = false
@@ -210,19 +221,8 @@ draw_order = 1
 process_material = SubResource( 4 )
 texture = ExtResource( 5 )
 
-[node name="Bubbles2" type="Particles2D" parent="pause_layer/pause_bg"]
-material = SubResource( 3 )
-position = Vector2( 1082.85, 1544.7 )
-amount = 15
-lifetime = 100.0
-visibility_rect = Rect2( -1000, -2000, 1920, 9000 )
-local_coords = false
-draw_order = 1
-process_material = SubResource( 5 )
-texture = ExtResource( 5 )
-
 [node name="pause_ripple" type="Sprite" parent="pause_layer/pause_bg"]
-material = SubResource( 7 )
+material = SubResource( 6 )
 position = Vector2( 960, 542.67 )
 scale = Vector2( 30, 17 )
 texture = ExtResource( 2 )
@@ -230,7 +230,7 @@ texture = ExtResource( 2 )
 [node name="transition_layer" type="CanvasLayer" parent="."]
 
 [node name="transition" type="ColorRect" parent="transition_layer"]
-material = SubResource( 9 )
+material = SubResource( 8 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -238,9 +238,9 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="transition_layer/transition"]
-anims/_SETUP = SubResource( 10 )
-anims/transition_in = SubResource( 11 )
-anims/transition_out = SubResource( 12 )
+anims/_SETUP = SubResource( 9 )
+anims/transition_in = SubResource( 10 )
+anims/transition_out = SubResource( 11 )
 
 [node name="screen_timer" type="Timer" parent="."]
 one_shot = true

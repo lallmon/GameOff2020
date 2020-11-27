@@ -1,6 +1,7 @@
 extends Node2D
 
 export var cost: = 10
+export var randomize_transform = true
 
 var debug = true
 
@@ -12,7 +13,8 @@ func initialize(newpos: Vector2):
 	
 	position = newpos
 	
-	RandomizeTerrain()
+	if randomize_transform == true:
+		RandomizeTerrain()
 	
 
 		
