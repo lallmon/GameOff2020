@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://FX/Masks/pixel_01.png" type="Texture" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://ui/fonts/DepthGuage.tres" type="DynamicFont" id=3]
+[ext_resource path="res://ui/fonts/instructions.tres" type="DynamicFont" id=4]
 [ext_resource path="res://FX/Particles/bubble_32x32.png" type="Texture" id=5]
 [ext_resource path="res://ui/GameHUD.tscn" type="PackedScene" id=11]
 [ext_resource path="res://screens/main/main.gd" type="Script" id=12]
@@ -384,7 +385,7 @@ position = Vector2( 960, 542.67 )
 scale = Vector2( 30, 17 )
 texture = ExtResource( 2 )
 
-[node name="VSplitContainer" type="VSplitContainer" parent="pause_layer/pause"]
+[node name="VSplitContainer" type="VBoxContainer" parent="pause_layer/pause"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -393,9 +394,6 @@ margin_left = -124.5
 margin_top = -86.0
 margin_right = 124.5
 margin_bottom = 86.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="pause_layer/pause/VSplitContainer"]
 margin_right = 249.0
@@ -408,18 +406,35 @@ __meta__ = {
 }
 
 [node name="RestartButton" type="Button" parent="pause_layer/pause/VSplitContainer"]
-margin_top = 89.0
+margin_top = 81.0
 margin_right = 249.0
-margin_bottom = 172.0
+margin_bottom = 139.0
 focus_mode = 0
 custom_styles/hover = SubResource( 6 )
 custom_styles/pressed = SubResource( 7 )
 custom_styles/focus = SubResource( 8 )
 custom_styles/normal = SubResource( 9 )
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 action_mode = 0
 enabled_focus_mode = 0
 text = "RESTART"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="Button" parent="pause_layer/pause/VSplitContainer"]
+margin_top = 143.0
+margin_right = 249.0
+margin_bottom = 201.0
+focus_mode = 0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+custom_fonts/font = ExtResource( 4 )
+action_mode = 0
+enabled_focus_mode = 0
+text = "QUIT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -471,4 +486,5 @@ anims/transition_out = SubResource( 19 )
 [node name="screen_timer" type="Timer" parent="."]
 one_shot = true
 [connection signal="pressed" from="pause_layer/pause/VSplitContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="pause_layer/pause/VSplitContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="timeout" from="screen_timer" to="." method="_on_screen_timer_timeout"]

@@ -40,6 +40,9 @@ func _on_RestartButton_pressed() -> void:
 	$hud_layer/GameHUD/AnimationPlayer.play("fade_out")
 	load_screen(GAME_SCN)
 
+func _on_QuitButton_pressed() -> void:
+	get_tree().quit()
+
 
 func load_screen(scrn := "", _transition := "", transition_out :=true, transition_in :=true):
 	if not scrn.empty():
@@ -102,5 +105,3 @@ func toggle_pause():
 	else:
 		bg.visible = false
 		button.disabled = true
-
-

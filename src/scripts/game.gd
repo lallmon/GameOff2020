@@ -10,7 +10,7 @@ var _filename = "game.dat"
 var deepest:int
 var longest:int
 
-var debug = true
+var debug = false
 
 #--------------------------------------
 func _set_player( v ):
