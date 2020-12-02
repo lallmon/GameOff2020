@@ -2,8 +2,6 @@ name: "Build Game Artifact"
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
 env:
   EXECUTABLE_TITLE: moonshot
@@ -35,6 +33,14 @@ jobs:
         with:
           name: windows
           path: build/windows
+      - name: Release to itch.io (Windows)
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
+          CHANNEL: windows
+          ITCH_GAME: ${{ secrets.ITCHIO_GAME }}
+          ITCH_USER: ${{ secrets.ITCHIO_USERNAME }}
+          PACKAGE: build/windows/$EXECUTABLE_TITLE.exe
 
   export-mac:
     name: MacOS Export
@@ -60,6 +66,14 @@ jobs:
         with:
           name: mac
           path: build/mac
+      - name: Release to itch.io (Macintosh)
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
+          CHANNEL: macintosh
+          ITCH_GAME: ${{ secrets.ITCHIO_GAME }}
+          ITCH_USER: ${{ secrets.ITCHIO_USERNAME }}
+          PACKAGE: build/mac/$EXECUTABLE_TITLE.zip
 
   export-linux:
     name: Linux Export
@@ -85,3 +99,11 @@ jobs:
         with:
           name: linux
           path: build/linux
+      - name: Release to itch.io (Linux)
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
+          CHANNEL: linux
+          ITCH_GAME: ${{ secrets.ITCHIO_GAME }}
+          ITCH_USER: ${{ secrets.ITCHIO_USERNAME }}
+          PACKAGE: build/linux/$EXECUTABLE_TITLE.x86_64
